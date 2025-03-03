@@ -21,6 +21,7 @@
             <!-- Page Sidebar Start-->
             @include('layouts.partials.sidebar')
             <!-- Page Sidebar Ends-->
+            @include('component.SweetAlert')
             <div class="page-body">
                 <!-- Container-fluid starts-->
                 @yield('content')

@@ -32,13 +32,21 @@
                     <div class="card-header pb-0">
                         <h4>Form Tambah Data</h4>
                     </div>
-                    <form class="form theme-form dark-inputs">
+                    <hr>
+                    <form class="form theme-form dark-inputs mt-3" action="/satuan/store" enctype="multipart/form-data"
+                        method="post">
+                        @csrf
+                        @method('POST')
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput15">Nama Satuan</label>
-                                        <input class="form-control input-air-primary" id="exampleFormControlInput15">
+                                        <input class="form-control input-air-primary" id="exampleFormControlInput15"
+                                            name="nama_satuan">
+                                        @error('nama_satuan')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

@@ -3,42 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\KategoriModel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use App\Models\SatuanModel;
 
-class SatuanController extends Controller
+class KategoriController extends Controller
 {
     public function index(){
         
-        $satuan = SatuanModel::orderBy('nama_satuan', 'asc')->get();
+        $kategori = KategoriModel::orderBy('nama_kategori', 'asc')->get();
 
-        return view('pages.satuan.index', [
-            'title' => 'satuan',
-            'active' => 'satuan',
-            'satuan' => $satuan,
+        return view('pages.kategori.index', [
+            'title' => 'kategori',
+            'active' => 'kategori',
+            'kategori' => $kategori,
         ]);
     }
     public function create(){
-        return view('pages.satuan.create', [
+        return view('pages.kategori.create', [
             'title' => 'create',
             'active' => 'create'
         ]);
     }
     public function edit($id){
-        return view('pages.satuan.edit', [
+        return view('pages.kategori.edit', [
             'title' => 'edit',
             'active' => 'edit',
-            'satuan' => SatuanModel::findOrFail($id),
+            'kategori' => KategoriModel::findOrFail($id),
         ]);
     }
 
     public function store(request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_satuan' => 'required',
+            'nama_kategori' => 'required',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -58,9 +57,9 @@ class SatuanController extends Controller
 
             $validatedData = $validator->validated();
 
-            SatuanModel::create($validatedData);
+            KategoriModel::create($validatedData);
 
-            return redirect('/satuan')->with('success', 'Data Berhasil Ditambahkan.');
+            return redirect('/kategori')->with('success', 'Data Berhasil Ditambahkan.');
         } catch (ValidationException $e) {
             if ($request->expectsJson()) {
                 return response()->json(['errors' => $e->errors()], 422);
@@ -72,20 +71,20 @@ class SatuanController extends Controller
                 return response()->json(['error' => 'Gagal menyimpan data. Silakan coba lagi.'], 500);
             }
 
-            return redirect()->back()->with('error', 'Kode satuan Sudah Digunakan.');
+            return redirect()->back()->with('error', 'Kode kategori Sudah Digunakan.');
         }
 
     }
     public function update(Request $request, $id)
     {
-        $satuan = SatuanModel::find($id);
+        $kategori = KategoriModel::find($id);
 
-        if (!$satuan) {
-            return redirect('/satuan')->with('error', 'Data satuan tidak ditemukan.');
+        if (!$kategori) {
+            return redirect('/kategori')->with('error', 'Data kategori tidak ditemukan.');
         }
 
         $validator = Validator::make($request->all(), [
-            'nama_satuan' => 'required',
+            'nama_kategori' => 'required',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -106,9 +105,9 @@ class SatuanController extends Controller
 
             $validatedData = $validator->validated();
 
-            $satuan->update($validatedData);
+            $kategori->update($validatedData);
 
-            return redirect('/satuan')->with('success', 'Data Berhasil Diperbarui!');
+            return redirect('/kategori')->with('success', 'Data Berhasil Diperbarui!');
         } catch (ValidationException $e) {
             if ($request->expectsJson()) {
                 return response()->json(['errors' => $e->errors()], 422);
@@ -126,13 +125,13 @@ class SatuanController extends Controller
 
     public function destroy(int $id)
     {
-        $satuan = SatuanModel::find($id);
+        $kategori = KategoriModel::find($id);
 
-        if (!$satuan) {
+        if (!$kategori) {
             return redirect()->back()->with('error', 'Data Tidak Ditemukan.');
         }
 
-        $satuan->delete();
+        $kategori->delete();
 
         return redirect()->back()->with('success', 'Data Berhasil Dihapus.');
     }
