@@ -2,11 +2,11 @@
 
 <body>
     <!-- loader starts-->
-    <div class="loader-wrapper">
+    {{-- <div class="loader-wrapper">
         <div class="theme-loader">
             <div class="loader-p"></div>
         </div>
-    </div>
+    </div> --}}
     <!-- loader ends-->
     <!-- tap on top starts-->
     <div class="tap-top"><i data-feather="chevrons-up"></i></div>

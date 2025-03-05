@@ -88,7 +88,7 @@
     var countries = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: "../assets/js/typeahead/data/countries.json",
+        prefetch: "/assets/js/typeahead/data/countries.json",
     });
     $("#prefetch .typeahead").typeahead(null, {
         name: "countries",
@@ -99,7 +99,7 @@
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: "./../assets/js/typeahead/data/films/post_1960.json",
         remote: {
-            url: "../assets/js/typeahead/data/films/queries/%QUERY.json",
+            url: "/assets/js/typeahead/data/films/queries/%QUERY.json",
             wildcard: "%QUERY",
         },
     });
@@ -114,7 +114,7 @@
         identify: function(obj) {
             return obj.team;
         },
-        prefetch: "../assets/js/typeahead/data/nfl.json",
+        prefetch: "/assets/js/typeahead/data/nfl.json",
     });
 
     function nflTeamsWithDefaults(q, sync) {
@@ -142,12 +142,12 @@
     var nbaTeams = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace("team"),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: "../assets/js/typeahead/data/nba.json",
+        prefetch: "/assets/js/typeahead/data/nba.json",
     });
     var nhlTeams = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace("team"),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: "../assets/js/typeahead/data/nhl.json",
+        prefetch: "/assets/js/typeahead/data/nhl.json",
     });
     $("#multiple-datasets .typeahead").typeahead({
         highlight: true,
