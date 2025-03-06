@@ -37,9 +37,10 @@
                             </svg>
                             <svg class="fill-icon">
                                 <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
-                            </svg><span>Dashboard</span></a></li>
-                    <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title"
-                            href="#">
+                            </svg>
+                            <span>Dashboard</span></a></li>
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
                             <svg class="stroke-icon">
                                 <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-widget') }}"></use>
                             </svg>

@@ -21,13 +21,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'id_umkm',
         'name',
-        'email',
-        'role',
-        'password',
-        'disetujui',
+        'email', 
+        'role', // 0 == admin, 1 == penjual
+        'password', 
+        'disetujui', // 0 == tidak disetujui, 1 == disetujui 
     ];
 
     protected $appends = ['kelola_umkm'];
@@ -54,17 +56,17 @@ class User extends Authenticatable
 
     protected static function booted()
     {
+        static::creating(function ($user) {
+            $user->password = Hash::make($user->password); // Hash password sebelum disimpan
+        });
+
         static::created(function ($user) {
-            // Create UMKM entry within a database transaction
             DB::transaction(function () use ($user) {
-                // Create UMKM entry directly after user creation
                 $umkm = UmkmModel::create([
                     'nama_umkm' => $user->name . ' UMKM',
                     'nama_pemilik' => $user->name,
                     'id_pengguna' => $user->id
                 ]);
-
-                // Update user with the UMKM ID
                 $user->update(['id_umkm' => $umkm->id_umkm]);
             });
         });

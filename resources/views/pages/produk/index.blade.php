@@ -39,7 +39,7 @@
                     <hr>
                     <div class="card-body">
                         <div class="table-responsive custom-scrollbar">
-                            <table class="display" id="basic-1">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>Nama Produk</th>

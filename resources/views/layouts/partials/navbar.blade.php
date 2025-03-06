@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </li>
-                
+
                 <li>
                     <div class="mode">
                         <svg class="for-dark">
@@ -132,13 +132,17 @@
                 <li class="profile-nav onhover-dropdown pe-0 py-0">
                     <div class="d-flex align-items-center profile-media"><img class="b-r-25"
                             src="{{ asset('assets/images/dashboard/profile.png') }}" alt="">
-                        <div class="flex-grow-1 user"><span>Helen Walter</span>
-                            <p class="mb-0 font-nunito">Admin
-                                <svg>
-                                    <use href="{{ asset('assets/svg/icon-sprite.svg#header-arrow-down') }}"></use>
-                                </svg>
-                            </p>
-                        </div>
+                        @if (Auth::check())
+                            <div class="flex-grow-1 user">
+                                <span>{{ Auth::user()->name }}</span>
+                                <p class="mb-0 font-nunito">
+                                    {{ Auth::user()->role == 0 ? 'Admin' : 'Penjual' }}
+                                    <svg>
+                                        <use href="{{ asset('assets/svg/icon-sprite.svg#header-arrow-down') }}"></use>
+                                    </svg>
+                                </p>
+                            </div>
+                        @endif
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
@@ -147,7 +151,14 @@
                         <li><a href="task.html"><i data-feather="file-text"></i><span>Taskboard</span></a>
                         </li>
                         <li><a href="edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
-                        <li><a href="login.html"> <i data-feather="log-in"></i><span>Log Out</span></a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                                @csrf
+                                <a href="#" onclick="document.getElementById('logout-form').submit();">
+                                    <i data-feather="log-out"></i><span>Log Out</span>
+                                </a>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>

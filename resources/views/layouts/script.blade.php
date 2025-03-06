@@ -19,7 +19,7 @@
 <script src="{{ asset('assets/js/chart/morris-chart/raphael.js') }}"></script>
 <script src="{{ asset('assets/js/chart/morris-chart/morris.js') }}"></script>
 <script src="{{ asset('assets/js/chart/morris-chart/prettify.min.js') }}"></script>
-<script src="{{ asset('assets/js/chart/apex-chart/apex-chart.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/chart/apex-chart/apex-chart.js') }}"></script> --}}
 <script src="{{ asset('assets/js/chart/apex-chart/stock-prices.js') }}"></script>
 <script src="{{ asset('assets/js/chart/apex-chart/moment.min.js') }}"></script>
 <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
