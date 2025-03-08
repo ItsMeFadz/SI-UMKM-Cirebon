@@ -1,6 +1,7 @@
 @include('layouts.head')
 
 <body>
+    @include('layouts.partials.loader')
     <!-- login page start-->
     @include('component.SweetAlert')
     <div class="container-fluid p-0">
@@ -63,7 +64,7 @@
                                                 data-feather="facebook"></i>facebook</a></div>
                                 </div> --}}
                                 <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2"
-                                        href="sign-up.html">Create Account</a></p>
+                                        href="/registrasi">Create Account</a></p>
                             </form>
                         </div>
                     </div>

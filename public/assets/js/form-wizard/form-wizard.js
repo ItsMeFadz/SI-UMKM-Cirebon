@@ -1,161 +1,274 @@
-// 1. horizontal wizard
-"use strict";
-var currentTab = 0;
-showTab(currentTab);
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Form wizard script starting");    
 
-function showTab(n) {
-    var x = document.getElementsByClassName("tab");
-    x[n].style.display = "block";
-    if (n == 0) {
-        document.getElementById("prevBtn").style.display = "none";
-    } else {
-        document.getElementById("prevBtn").style.display = "inline";
+    function setCardHeight() {
+        console.log("Setting card height");
     }
-    if (n == x.length - 1) {
-        document.getElementById("nextBtn").innerHTML = "Submit";
-    } else {
-        document.getElementById("nextBtn").innerHTML = "Next";
-    }
-    fixStepIndicator(n);
-}
 
-function nextPrev(n) {
-    var x = document.getElementsByClassName("tab");
-    if (n == 1 && !validateForm()) return false;
-    x[currentTab].style.display = "none";
-    currentTab = currentTab + n;
-    if (currentTab >= x.length) {
-        document.getElementById("regForm").submit();
-        return false;
+    // Function to validate the current step
+    function validateCurrentStep(step) {
+        const stepDiv = document.querySelector(`.step-content:nth-child(${step + 2})`);
+        if (!stepDiv) return true;
+    
+        const inputs = stepDiv.querySelectorAll('input[required]:not([type="checkbox"]), select[required], textarea[required]');
+        let isValid = true;
+    
+        // Validate inputs
+        inputs.forEach(input => {
+            if (input.type === 'url') {
+                input.type = 'text';
+                setTimeout(() => {
+                    input.type = 'url';
+                }, 100);
+            }
+    
+            if (!input.checkValidity()) {
+                input.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+            }
+        });
+    
+        return isValid;
     }
-    showTab(currentTab);
-}
 
-function validateForm() {
-    var x,
-        y,
-        i,
-        valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
-    for (i = 0; i < y.length; i++) {
-        if (y[i].value == "") {
-            y[i].className += " invalid";
-            valid = false;
+    window.nextStep = function() {
+        console.log("nextStep called");
+        
+        var msform = document.getElementById("msform");
+        if (!msform) {
+            console.error("msform not found");
+            return;
         }
-    }
-    if (valid) {
-        document.getElementsByClassName("step")[currentTab].className += " finish";
-    }
-    return valid;
-}
-
-function fixStepIndicator(n) {
-    var i,
-        x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-    }
-    x[n].className += " active";
-}
-
-// 2. Numbering wizard
-var form = document.getElementById("msform");
-var fieldsets = form.querySelectorAll("form");
-var currentStep = 0;
-var numSteps = 5;
-
-for (var i = 1; i < fieldsets.length; i++) {
-    fieldsets[i].style.display = "none";
-}
-
-function nextStep() {
-    document.getElementById("backbtn").disabled = false;
-    currentStep++;
-    if (currentStep > numSteps) {
-        currentStep = 1;
-    }
-    var stepper = document.getElementById("stepper1");
-    var steps = stepper.getElementsByClassName("step");
-
-    Array.from(steps).forEach((step, index) => {
-        let stepNum = index + 1;
-        let stepLength = steps.length;
-        if (stepNum === currentStep && currentStep < stepLength) {
-            addClass(step, "editing");
-            fieldsets[currentStep].style.display = "flex";
-        } else {
-            removeClass(step, "editing");
+        
+        var stepContents = msform.querySelectorAll(".step-content");
+        var stepper = document.getElementById("stepper1");
+        var backBtn = document.getElementById("backbtn");
+        var nextBtn = document.getElementById("nextbtn");
+        
+        var currentStep = parseInt(msform.getAttribute("data-step") || "0");
+        
+        // Validate current step before proceeding
+        if (!validateCurrentStep(currentStep)) {
+            console.log("Validation failed for step", currentStep);
+            return;
         }
-        if (stepNum <= currentStep && currentStep < stepLength) {
-            addClass(step, "done");
-            addClass(step, "active");
-            removeClass(step, "editing");
-            fieldsets[currentStep - 1].style.display = "none";
-        } else {
-            removeClass(step, "done");
+        
+        // Special handling for step 3 (index 2) when moving to step 4 (final step)
+        if (currentStep === 2) {
+            // Show Sweet Alert confirmation
+            Swal.fire({
+                title: 'Konfirmasi Pendaftaran',
+                text: 'Apakah Anda sudah yakin data yang Anda masukkan benar?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Saya Yakin',
+                cancelButtonText: 'Kembali',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Fix URL inputs before final submission
+                    const urlInputs = document.querySelectorAll('input[type="url"]');
+                    urlInputs.forEach(input => {
+                        input.type = 'text';
+                    });
+                    
+                    // Move to the success step (step 4)
+                    currentStep++;
+                    msform.setAttribute("data-step", currentStep.toString());
+                    
+                    for (var i = 0; i < stepContents.length; i++) {
+                        stepContents[i].style.display = i === currentStep ? "flex" : "none";
+                    }
+                    
+                    // Hide the navigation buttons on success step
+                    nextBtn.style.display = "none";
+                    if (backBtn) backBtn.style.display = "none";
+                    
+                    // Refresh the success image
+                    var successImage = document.querySelector('.successful-form img');
+                    if (successImage) {
+                        var imageSrc = successImage.getAttribute('src');
+                        successImage.setAttribute('src', imageSrc + '?t=' + new Date().getTime());
+                    }
+                    
+                    // Update stepper classes for step 4
+                    if (stepper) {
+                        var steps = stepper.getElementsByClassName("step");
+                        Array.from(steps).forEach((step, index) => {
+                            step.classList.remove("editing");
+                            if (index === currentStep) {
+                                step.classList.add("editing", "active");
+                            } else if (index < currentStep) {
+                                step.classList.add("done", "active");
+                            } else {
+                                step.classList.remove("done", "active");
+                            }
+                        });
+                    }
+                    
+                    // Submit the form after a short delay to show the success animation
+                    setTimeout(function() {
+                        const form = document.querySelector('#msform form');
+                        form.submit();
+                    }, 2000);
+                }
+            });
+            return; // Don't proceed with normal next step logic
         }
-        if (currentStep == stepLength - 1) {
-            document.getElementById("nextbtn").textContent = "Finish";
+        
+        // Normal step advancement for other steps
+        currentStep++;
+        
+        console.log("Moving to step:", currentStep);
+        
+        msform.setAttribute("data-step", currentStep.toString());
+        if (backBtn) backBtn.disabled = false;
+        
+        for (var i = 0; i < stepContents.length; i++) {
+            stepContents[i].style.display = i === currentStep ? "flex" : "none";
         }
-        if (currentStep > stepLength - 1) {
-            document.getElementById("nextbtn").textContent = "Finish";
-            addClass(step, "done");
-            addClass(step, "active");
-            removeClass(step, "editing");
-            document.getElementById("nextbtn").disabled = true;
+        
+        if (stepper) {
+            var steps = stepper.getElementsByClassName("step");
+            Array.from(steps).forEach((step, index) => {
+                step.classList.remove("editing");
+                if (index === currentStep) {
+                    step.classList.add("editing", "active");
+                } else if (index < currentStep) {
+                    step.classList.add("done", "active");
+                } else {
+                    step.classList.remove("done", "active");
+                }
+            });
+    
+            // Update the Next button based on current step
+            if (nextBtn) {
+                if (currentStep === 2) { // When on step 3 (index 2)
+                    nextBtn.textContent = "Finish";
+                } else {
+                    nextBtn.textContent = "Next";
+                }
+            }
         }
-    });
-}
+    
+        setTimeout(setCardHeight, 100);
+    };
 
-function backStep() {
-    currentStep--;
-    var stepper = document.getElementById("stepper1");
-    var steps = stepper.getElementsByClassName("step");
-    let stepLength = steps.length;
-    document.getElementById("nextbtn").textContent = "Next";
-    document.getElementById("nextbtn").disabled = false;
-    if (currentStep < stepLength - 1) {
-        document.getElementById("backbtn").disabled = false;
-        fieldsets[currentStep + 1].style.display = "none";
-        fieldsets[currentStep].style.display = "flex";
-        removeClass(steps[currentStep], "done");
-        removeClass(steps[currentStep], "active");
-        if (currentStep == 0) {
-            document.getElementById("backbtn").disabled = true;
+    window.backStep = function() {
+        console.log("backStep called");
+        
+        var msform = document.getElementById("msform");
+        if (!msform) {
+            console.error("msform not found");
+            return;
         }
-    } else {
-        removeClass(steps[currentStep], "done");
-        removeClass(steps[currentStep], "active");
+        
+        var stepContents = msform.querySelectorAll(".step-content");
+        var stepper = document.getElementById("stepper1");
+        var nextBtn = document.getElementById("nextbtn");
+        var backBtn = document.getElementById("backbtn");
+
+        var currentStep = parseInt(msform.getAttribute("data-step") || "0");
+        currentStep--;
+        if (currentStep < 0) currentStep = 0;
+
+        console.log("Moving back to step:", currentStep);
+        
+        msform.setAttribute("data-step", currentStep.toString());
+
+        for (var i = 0; i < stepContents.length; i++) {
+            stepContents[i].style.display = i === currentStep ? "flex" : "none";
+        }
+
+        if (stepper) {
+            var steps = stepper.getElementsByClassName("step");
+            Array.from(steps).forEach((step, index) => {
+                if (index === currentStep) {
+                    step.classList.add("editing", "active");
+                    step.classList.remove("done");
+                } else if (index < currentStep) {
+                    step.classList.add("done", "active");
+                    step.classList.remove("editing");
+                } else {
+                    step.classList.remove("done", "active", "editing");
+                }
+            });
+
+            if (nextBtn) {
+                // Reset button text based on current step
+                if (currentStep === 2) {
+                    nextBtn.textContent = "Finish";
+                } else {
+                    nextBtn.textContent = "Next";
+                }
+                nextBtn.style.display = "inline-block";
+            }
+
+            if (backBtn) {
+                backBtn.disabled = currentStep === 0;
+                backBtn.style.display = "inline-block";
+            }
+        }
+
+        setTimeout(setCardHeight, 100);
+    };
+
+    // Initialize the form
+    var msform = document.getElementById("msform");
+    if (msform) {
+        msform.setAttribute("data-step", "0");
+        
+        var stepContents = msform.querySelectorAll(".step-content");
+        for (var i = 0; i < stepContents.length; i++) {
+            stepContents[i].style.display = i === 0 ? "flex" : "none";
+        }
+        
+        var stepper = document.getElementById("stepper1");
+        if (stepper) {
+            var steps = stepper.getElementsByClassName("step");
+            if (steps.length > 0) {
+                steps[0].classList.add("editing", "active");
+            }
+        }
+
+        var backBtn = document.getElementById("backbtn");
+        if (backBtn) backBtn.disabled = true;
     }
-}
 
-// function prevStep(){
-//   fieldsets[currentStep].style.display = "none";
-//   currentStep--;
-//   fieldsets[currentStep].style.display = "block";
-// }
+    // Set up event listeners
+    var nextBtn = document.getElementById("nextbtn");
+    var backBtn = document.getElementById("backbtn");
 
-/* get, set class, see https://ultimatecourses.com/blog/javascript-hasclass-addclass-removeclass-toggleclass */
-
-function hasClass(elem, className) {
-    return new RegExp(" " + className + " ").test(" " + elem.className + " ");
-}
-
-function addClass(elem, className) {
-    if (!hasClass(elem, className)) {
-        elem.className += " " + className;
-    }
-}
-
-function removeClass(elem, className) {
-    console.log("elem, className", elem, className);
-    var newClass = " " + elem.className.replace(/[\t\r\n]/g, " ") + " ";
-    if (hasClass(elem, className)) {
-        while (newClass.indexOf(" " + className + " ") >= 0) {
-            newClass = newClass.replace(" " + className + " ", " ");
+    if (nextBtn) {
+        // Remove inline onclick attribute if it exists
+        if (nextBtn.hasAttribute("onclick")) {
+            nextBtn.removeAttribute("onclick");
         }
-        elem.className = newClass.replace(/^\s+|\s+$/g, "");
+
+        // Add clean event listener
+        nextBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent event bubbling
+            window.nextStep();
+        });
     }
-    console.log("elem.className", elem.className);
-}
+
+    if (backBtn) {
+        // Remove inline onclick attribute if it exists
+        if (backBtn.hasAttribute("onclick")) {
+            backBtn.removeAttribute("onclick");
+        }
+
+        // Add clean event listener
+        backBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent event bubbling
+            window.backStep();
+        });
+    }
+
+    console.log("Form wizard setup complete");
+});

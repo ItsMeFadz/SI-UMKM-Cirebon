@@ -70,6 +70,13 @@ class User extends Authenticatable
                 $user->update(['id_umkm' => $umkm->id_umkm]);
             });
         });
+
+        static::deleting(function ($user) {
+            // Hapus UMKM yang terkait
+            if ($user->umkm) {
+                $user->umkm->delete();
+            }
+        });
     }
 
     public function umkm()

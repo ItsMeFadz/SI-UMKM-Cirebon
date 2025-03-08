@@ -22,11 +22,11 @@ class UmkmModel extends Model
         'foto_profil_umkm',
         'link_wa',
         'link_marketplace',
-        'link_gmpas'
+        'link_gmaps'
     ];
 
     public function user()
     {
-        return $this->hasOne(User::class, 'id_pengguna', 'id');
+        return $this->belongsTo(User::class, 'id_pengguna', 'id');
     }
 }

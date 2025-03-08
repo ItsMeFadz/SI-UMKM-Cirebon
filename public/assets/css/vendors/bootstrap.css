@@ -12633,6 +12633,32 @@ fieldset:disabled .btn {
     .d-print-none {
         display: none !important
     }
+}   
+
+/* .card.height-equal { 
+    width: 100% !important;       
+    overflow: auto !important;    
+    transition: none !important;  
+    margin-top: 50px !important;
 }
+
+.card-body.basic-wizard {
+    min-height: 300px !important; 
+    overflow: auto !important;    
+}
+
+#msform form {
+    width: 100% !important;    
+    overflow: auto !important; 
+}
+
+
+.wizard-footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+} */
 
 /*# sourceMappingURL=bootstrap.min.css.map */
