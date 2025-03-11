@@ -33,9 +33,7 @@
                     </div>
                     <div class="bar-chart-widget">
                         <div class="bottom-content card-body">
-                            <div class="row">
-                                <img src="https://ghchart.rshah.org/HEXCOLORCODE/ItsMeFadz" alt="Name Your Github chart">
-                            </div>
+                            <img src="https://ghchart.rshah.org/HEXCOLORCODE/ItsMeFadz" alt="Name Your Github chart">
                         </div>
                     </div>
                 </div>

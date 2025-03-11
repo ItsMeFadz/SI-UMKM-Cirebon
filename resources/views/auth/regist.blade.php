@@ -135,9 +135,9 @@
                                                 </select>
                                             </div>
                                             <div class="col-12">
-                                                <label class="form-label" for="givefeedback">Deskripsi Profil<span
+                                                <label class="form-label" for="givefeedback">Alamat Lengkap<span
                                                         class="txt-danger">*</span></label>
-                                                <textarea class="form-control" id="givefeedback" required="" name="deskripsi"></textarea>
+                                                <textarea class="form-control" id="givefeedback" required="" name="alamat"></textarea>
                                                 <div class="invalid-feedback">Please enter a message in the textarea.
                                                 </div>
                                             </div>
@@ -173,7 +173,7 @@
                                                 <label class="form-label" for="marketplace-link">Link Eccomerce
                                                     (Opsional)</label>
                                                 <input class="form-control" id="marketplace-link" type="text"
-                                                    placeholder="https://shoope" name="link_marketplace" required>
+                                                    placeholder="https://shoope" name="link_marketplace">
                                                 <div class="invalid-feedback">Please enter a valid link</div>
                                                 <div class="valid-feedback">Looks Good!</div>
                                             </div>

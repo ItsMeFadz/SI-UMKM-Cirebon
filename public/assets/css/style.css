@@ -52144,3 +52144,11 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
         height: calc(100vh - 210px)
     }
 }
+
+.profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd; /* Opsional: Menambahkan border */
+}

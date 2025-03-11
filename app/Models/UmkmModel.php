@@ -17,7 +17,7 @@ class UmkmModel extends Model
         'id_kabupaten',
         'id_kecamatan',
         'nama_umkm',
-        'deskripsi',
+        'alamat',
         'nama_pemilik',
         'foto_profil_umkm',
         'link_wa',

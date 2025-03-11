@@ -101,7 +101,7 @@ class LoginController extends Controller
             'id_kategori' => 'required|exists:kategori,id_kategori',
             'id_kabupaten' => 'required|exists:kabupaten,id_kabupaten',
             'id_kecamatan' => 'required|exists:kecamatan,id_kecamatan',
-            'deskripsi' => 'required|string',
+            'alamat' => 'required|string',
             'foto_profil_umkm' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'link_wa' => 'required|string',
             'link_marketplace' => 'nullable|string',
@@ -124,7 +124,7 @@ class LoginController extends Controller
                 'email' => $request->email,
                 'password' => $request->password, // Will be hashed by the model's boot method
                 'role' => $request->role,
-                'disetujui' => 0, // Default to not approved
+                'disetujui' => 1, // Default to not approved
             ]);
 
             // Handle file upload
@@ -143,7 +143,7 @@ class LoginController extends Controller
                     'id_kategori' => $request->id_kategori,
                     'id_kabupaten' => $request->id_kabupaten,
                     'id_kecamatan' => $request->id_kecamatan,
-                    'deskripsi' => $request->deskripsi,
+                    'alamat' => $request->alamat,
                     'foto_profil_umkm' => $fotoPath,
                     'link_wa' => $request->link_wa,
                     'link_marketplace' => $request->link_marketplace,
@@ -157,7 +157,7 @@ class LoginController extends Controller
                     'id_kategori' => $request->id_kategori,
                     'id_kabupaten' => $request->id_kabupaten,
                     'id_kecamatan' => $request->id_kecamatan,
-                    'deskripsi' => $request->deskripsi,
+                    'alamat' => $request->alamat,
                     'nama_pemilik' => $user->name,
                     'foto_profil_umkm' => $fotoPath,
                     'link_wa' => $request->link_wa,

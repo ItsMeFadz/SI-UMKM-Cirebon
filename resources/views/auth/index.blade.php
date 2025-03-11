@@ -85,7 +85,7 @@
                     passwordInput.type = "password";
                 }
             }
-            </script>
+        </script>
         <script src="{{ 'assets/js/script.js' }}"></script>
     </div>
 </body>

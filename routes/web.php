@@ -7,6 +7,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProfilumkmController;
 use App\Http\Controllers\SatuanController;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +76,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/produk/edit/{id}', 'edit');
         Route::post('/produk/update/{id}', 'update');
         Route::delete('/produk/delete/{id}', 'destroy');
+    });
+
+    Route::controller(ProfilumkmController::class)->group(function () {
+        Route::get('/profil-umkm', 'index');
+        Route::post('/profil-umkm/update_account/{id}', 'update_account');
+        Route::post('/profil-umkm/update_umkm/{id}', 'update_umkm');
     });
 
     Route::controller(PenggunaController::class)->group(function () {

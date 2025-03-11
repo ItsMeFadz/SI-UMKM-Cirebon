@@ -80,7 +80,7 @@
                             </svg><span>Ecommerce</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="/produk">Produk</a></li>
-                            <li><a href="/umkm">Profil UMKM</a></li>
+                            <li><a href="/profil-umkm">Profil UMKM</a></li>
                         </ul>
                     </li>
 

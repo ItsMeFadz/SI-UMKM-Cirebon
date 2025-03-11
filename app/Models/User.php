@@ -56,9 +56,6 @@ class User extends Authenticatable
 
     protected static function booted()
     {
-        static::creating(function ($user) {
-            $user->password = Hash::make($user->password); // Hash password sebelum disimpan
-        });
 
         static::created(function ($user) {
             DB::transaction(function () use ($user) {
@@ -82,6 +79,11 @@ class User extends Authenticatable
     public function umkm()
     {
         return $this->hasOne(UmkmModel::class, 'id_pengguna', 'id');
+    }
+
+    public function produk()
+    {
+        return $this->hasOne(ProdukModel::class, 'id_pengguna', 'id');
     }
 
 }

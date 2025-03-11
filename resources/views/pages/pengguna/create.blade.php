@@ -110,6 +110,9 @@
                                         @error('password')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
+                                        <div class="show-hide" onclick="togglePassword()">
+                                            <span class="show"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

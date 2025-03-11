@@ -47,9 +47,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($produk as $item)
+                                    @foreach ($produk as $item)
                                         <tr>
-                                            <td>{{ $item->nama_produk }}</td>
+                                            <td>{{ $item->name }}</td>
                                             <td>
                                                 <ul class="action">
                                                     <li>
@@ -68,7 +68,7 @@
                                                 </ul>
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
