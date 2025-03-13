@@ -52152,3 +52152,13 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
     object-fit: cover;
     border: 3px solid #ddd; /* Opsional: Menambahkan border */
 }
+
+.img-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 3px;
+}
+

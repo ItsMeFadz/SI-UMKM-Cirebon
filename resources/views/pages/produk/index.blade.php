@@ -39,17 +39,31 @@
                     <hr>
                     <div class="card-body">
                         <div class="table-responsive custom-scrollbar">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="basic-1">
                                 <thead>
                                     <tr>
+                                        <th>Gambar</th>
                                         <th>Nama Produk</th>
+                                        <th>Kategori</th>
+                                        <th>Satuan</th>
+                                        <th>Harga</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($produk as $item)
                                         <tr>
+                                            <td>
+                                                @if ($item->gambar)
+                                                    <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar Produk" class="img-thumbnail">
+                                                @else
+                                                    <span>Tidak ada gambar</span>
+                                                @endif
+                                            </td>
                                             <td>{{ $item->name }}</td>
+                                            <td>{{ $item->kategori ? $item->kategori->nama_kategori : 'Tidak Ada Kategori' }}</td>
+                                            <td>{{ $item->id_satuan ? $item->satuan->nama_satuan : 'Tidak Ada Kategori' }}</td>
+                                            <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
                                             <td>
                                                 <ul class="action">
                                                     <li>

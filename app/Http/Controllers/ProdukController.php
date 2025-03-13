@@ -16,7 +16,9 @@ class ProdukController extends Controller
     public function index()
     {
 
-        $produk = ProdukModel::orderBy('name', 'asc')->get();
+        $produk = ProdukModel::where('id_pengguna', Auth::id())
+        ->orderBy('name', 'asc')
+        ->get();
 
         return view('pages.produk.index', [
             'title' => 'produk',
@@ -104,6 +106,8 @@ class ProdukController extends Controller
                 $validatedData['gambar'] = $fotoPath;
             }
 
+            $validatedData['harga'] = str_replace(',', '', $request->harga); // Hapus pemisah ribuan sebelum menyimpan
+
             ProdukModel::create($validatedData);
 
             return redirect('/produk')->with('success', 'Data Berhasil Ditambahkan.');
@@ -113,7 +117,7 @@ class ProdukController extends Controller
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan data.')->withInput();
         }
     }
-    
+
     public function update(Request $request, $id)
     {
         $produk = ProdukModel::find($id);
@@ -164,6 +168,8 @@ class ProdukController extends Controller
                 $gambarPath = $request->file('gambar')->store('produk', 'public');
                 $validatedData['gambar'] = $gambarPath;
             }
+
+            $validatedData['harga'] = str_replace(',', '', $request->harga); 
 
             // Update data produk
             $produk->update($validatedData);

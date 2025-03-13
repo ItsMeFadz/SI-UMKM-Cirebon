@@ -50,34 +50,40 @@
                                                 <label class="form-label" for="email-basic-wizard">Email<span
                                                         class="txt-danger">*</span></label>
                                                 <input class="form-control" id="email-basic-wizard" type="email"
-                                                    required="" placeholder="Zono@gmail.com" name="email">
+                                                    required="" placeholder="Zono@gmail.com" name="email"
+                                                    value="{{ old('email') }}">
                                             </div>
                                             <div class="col-sm-6">
                                                 <label class="form-label" for="firstnamewizard">Nama Lengkap<span
                                                         class="txt-danger">*</span></label>
                                                 <input class="form-control" id="firstnamewizard" type="text"
-                                                    required="" placeholder="Enter your name" name="name">
+                                                    required="" placeholder="Enter your name" name="name"
+                                                    value="{{ old('name') }}">
                                             </div>
                                             <div class="col-xxl-4 col-sm-6">
                                                 <label class="col-sm-6 form-label" for="passwordwizard">Password<span
                                                         class="txt-danger">*</span></label>
                                                 <input class="form-control" id="passwordwizard" type="password"
-                                                    placeholder="Enter password" required="" name="password">
+                                                    placeholder="Enter password" required="" name="password"
+                                                    value="{{ old('password') }}">
                                             </div>
                                             <div class="col-xxl-4 col-sm-6">
                                                 <label class="col-sm-6 form-label" for="confirmpasswordwizard">Confirm
                                                     Password<span class="txt-danger">*</span></label>
                                                 <input class="form-control" id="confirmpasswordwizard" type="password"
                                                     placeholder="Enter confirm password" required=""
-                                                    name="password_confirmation">
+                                                    name="password_confirmation"
+                                                    value="{{ old('password_confirmation') }}">
                                             </div>
                                             <div class="col-xxl-4">
                                                 <label class="form-label" for="firstnamewizard">Role<span
                                                         class="txt-danger">*</span></label>
                                                 <select class="form-select" name="role">
                                                     <option selected disabled>--- Pilih Role ---</option>
-                                                    <option value="0">Admin</option>
-                                                    <option value="1">Penjual</option>
+                                                    <option value="0" {{ old('role') == '0' ? 'selected' : '' }}>
+                                                        Admin</option>
+                                                    <option value="1" {{ old('role') == '1' ? 'selected' : '' }}>
+                                                        Penjual</option>
                                                 </select>
                                             </div>
                                             <div class="col-12">
@@ -96,7 +102,8 @@
                                                 <label class="form-label" for="placeholdername1">Nama UMKM<span
                                                         class="txt-danger">*</span></label>
                                                 <input class="form-control" id="placeholdername1" type="text"
-                                                    required="" placeholder="Placeholder name" name="nama_umkm">
+                                                    required="" placeholder="Placeholder name" name="nama_umkm"
+                                                    value="{{ old('nama_umkm') }}">
                                             </div>
                                             <div class="col-xxl-4 col-sm-6">
                                                 <label class="form-label" for="cardNumber01">Kategori UMKM<span
@@ -104,7 +111,8 @@
                                                 <select class="form-select" name="id_kategori" required>
                                                     <option selected disabled>--- Pilih Kategori ---</option>
                                                     @foreach ($kat as $item)
-                                                        <option value="{{ $item->id_kategori }}">
+                                                        <option value="{{ $item->id_kategori }}"
+                                                            {{ old('id_kategori') == $item->id_kategori ? 'selected' : '' }}>
                                                             {{ ucfirst($item->nama_kategori) }}
                                                         </option>
                                                     @endforeach
@@ -116,7 +124,8 @@
                                                 <select class="form-select" name="id_kabupaten" required>
                                                     <option selected disabled>--- Pilih Kabupaten ---</option>
                                                     @foreach ($kab as $item)
-                                                        <option value="{{ $item->id_kabupaten }}">
+                                                        <option value="{{ $item->id_kabupaten }}"
+                                                            {{ old('id_kabupaten') == $item->id_kabupaten ? 'selected' : '' }}>
                                                             {{ ucfirst($item->nama_kabupaten) }}
                                                         </option>
                                                     @endforeach
@@ -128,7 +137,8 @@
                                                 <select class="form-select" name="id_kecamatan" required>
                                                     <option selected disabled>--- Pilih Kecamatan ---</option>
                                                     @foreach ($kec as $item)
-                                                        <option value="{{ $item->id_kecamatan }}">
+                                                        <option value="{{ $item->id_kecamatan }}"
+                                                            {{ old('id_kecamatan') == $item->id_kecamatan ? 'selected' : '' }}>
                                                             {{ ucfirst($item->nama_kecamatan) }}
                                                         </option>
                                                     @endforeach
@@ -137,7 +147,7 @@
                                             <div class="col-12">
                                                 <label class="form-label" for="givefeedback">Alamat Lengkap<span
                                                         class="txt-danger">*</span></label>
-                                                <textarea class="form-control" id="givefeedback" required="" name="alamat"></textarea>
+                                                <textarea class="form-control" id="givefeedback" required="" name="alamat">{{ old('alamat') }}</textarea>
                                                 <div class="invalid-feedback">Please enter a message in the textarea.
                                                 </div>
                                             </div>
@@ -165,7 +175,8 @@
                                                 <label class="form-label" for="email-basic">Link WhatsApp<span
                                                         class="txt-danger">*</span></label>
                                                 <input class="form-control" id="email-basic" type="text" required
-                                                    placeholder="wa.me/628xxxxxx" name="link_wa">
+                                                    placeholder="wa.me/628xxxxxx" name="link_wa"
+                                                    value="{{ old('link_wa') }}">
                                                 <div class="invalid-feedback">Please enter your WhatsApp link</div>
                                                 <div class="valid-feedback">Looks Good!</div>
                                             </div>
@@ -173,7 +184,8 @@
                                                 <label class="form-label" for="marketplace-link">Link Eccomerce
                                                     (Opsional)</label>
                                                 <input class="form-control" id="marketplace-link" type="text"
-                                                    placeholder="https://shoope" name="link_marketplace">
+                                                    placeholder="https://shoope" name="link_marketplace"
+                                                    value="{{ old('link_marketplace') }}">
                                                 <div class="invalid-feedback">Please enter a valid link</div>
                                                 <div class="valid-feedback">Looks Good!</div>
                                             </div>
@@ -181,7 +193,8 @@
                                                 <label class="form-label" for="gmaps-link">Lokasi UMKM
                                                     (Gmaps)</label>
                                                 <input class="form-control" id="gmaps-link" type="text"
-                                                    placeholder="https://gmaps" name="link_gmaps">
+                                                    placeholder="https://gmaps" name="link_gmaps"
+                                                    value="{{ old('link_gmaps') }}">
                                                 <div class="invalid-feedback">Please enter a valid link</div>
                                                 <div class="valid-feedback">Looks Good!</div>
                                             </div>
@@ -228,4 +241,5 @@
         <script src="{{ asset('assets/js/form-wizard/form-wizard.js') }}"></script>
         <script src="{{ asset('assets/js/form-wizard/image-upload.js') }}"></script>
         <script src="{{ asset('assets/js/script.js') }}"></script>
+    </div>
 </body>

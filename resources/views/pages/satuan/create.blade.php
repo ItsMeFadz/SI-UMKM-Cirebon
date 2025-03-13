@@ -53,9 +53,7 @@
                         </div>
                         <div class="card-footer text-end">
                             <button class="btn btn-primary me-3" type="submit">Submit</button>
-                            <a href="/satuan">
-                                <input class="btn btn-light" type="reset" value="Cancel">
-                            </a>
+                            <a href="/satuan" class="btn btn-light">Cancel</a>
                         </div>
                     </form>
                 </div>

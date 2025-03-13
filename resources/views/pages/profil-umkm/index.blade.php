@@ -122,7 +122,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Profil UMKM</label>
-                                        <input class="form-control" id="formFileDocument" type="file"
+                                        <input class="form-control input-air-primary" id="formFileDocument" type="file"
                                             aria-label="file example" name="foto_profil_umkm">
                                     </div>
                                 </div>

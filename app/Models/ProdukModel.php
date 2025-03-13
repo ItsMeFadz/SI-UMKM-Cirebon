@@ -24,4 +24,13 @@ class ProdukModel extends Model
         'gambar',
     ];
 
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriModel::class, 'id_kategori');
+    }
+    public function satuan()
+    {
+        return $this->belongsTo(SatuanModel::class, 'id_satuan');
+    }
+
 }

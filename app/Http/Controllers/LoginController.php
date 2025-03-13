@@ -84,7 +84,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Anda telah logout.');
+        return redirect()->route('login');
     }
 
     public function registrasiProses(Request $request)
@@ -181,6 +181,14 @@ class LoginController extends Controller
                 ->withInput();
         }
     }
+
+    // public function notfound()
+    // {
+    //     return view('error.404', [
+    //         'title' => 'Page Not Found',
+    //         'active' => 'Page Not Found'
+    //     ]);
+    // }
 
 
 }

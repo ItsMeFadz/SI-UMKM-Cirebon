@@ -14,4 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
             this.value = new Intl.NumberFormat("id-ID").format(value); // Format ribuan
         }
     });
+
+    // Hapus format ribuan sebelum form dikirim
+    document.querySelector(".form").addEventListener("submit", function () {
+        hargaInput.value = hargaInput.value.replace(/\D/g, ""); // Hapus semua karakter selain angka
+    });
 });
+

@@ -42,7 +42,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="name">Nama Produk<span
                                                 class="txt-danger">*</span></label>
-                                        <input class="form-control input-air-primary" id="name" name="name">
+                                        <input class="form-control input-air-primary" id="name" name="name"
+                                            value="{{ old('name') }}">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -55,7 +56,8 @@
                                         <select class="form-select" name="id_kategori" required>
                                             <option selected disabled>--- Pilih Kategori ---</option>
                                             @foreach ($kat as $item)
-                                                <option value="{{ $item->id_kategori }}">
+                                                <option value="{{ $item->id_kategori }}"
+                                                    {{ old('id_kategori') == $item->id_kategori ? 'selected' : '' }}>
                                                     {{ ucfirst($item->nama_kategori) }}
                                                 </option>
                                             @endforeach
@@ -72,7 +74,8 @@
                                         <select class="form-select" name="id_satuan" required>
                                             <option selected disabled>--- Pilih Satuan ---</option>
                                             @foreach ($sat as $item)
-                                                <option value="{{ $item->id_satuan }}">
+                                                <option value="{{ $item->id_satuan }}"
+                                                    {{ old('id_satuan') == $item->id_satuan ? 'selected' : '' }}>
                                                     {{ ucfirst($item->nama_satuan) }}
                                                 </option>
                                             @endforeach
@@ -86,7 +89,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="stok">Stok<span
                                                 class="txt-danger">*</span></label>
-                                        <input class="form-control input-air-primary" name="stok" type="number">
+                                        <input class="form-control input-air-primary" name="stok" type="number"
+                                            value="{{ old('stok') }}">
                                         @error('stok')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -96,7 +100,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="harga">Harga<span
                                                 class="txt-danger">*</span></label>
-                                        <input class="form-control input-air-primary" name="harga" id="harga">
+                                        <input class="form-control input-air-primary" name="harga" id="harga"
+                                            value="{{ old('harga') }}">
                                         @error('harga')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -106,7 +111,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="link">Link Produk Eccomerce (Opsional)</label>
                                         <input class="form-control input-air-primary" id="link" name="link"
-                                            placeholder="https://Shoope/">
+                                            placeholder="https://Shoope/" value="{{ old('link') }}">
                                         @error('link')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -117,7 +122,7 @@
                                         <label class="form-label" for="gambar">Gambar<span
                                                 class="txt-danger">*</span></label>
                                         <input class="form-control input-air-primary" id="formFileDocument" type="file"
-                                            aria-label="file example" name="gambar">
+                                            aria-label="file example" name="gambar" value="{{ old('gambar') }}">
                                         @error('gambar')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -126,7 +131,7 @@
                                 <div class="col-12">
                                     <label class="form-label" for="givefeedback">Deskripsi<span
                                             class="txt-danger">*</span></label>
-                                    <textarea class="form-control input-air-primary" id="givefeedback" required="" name="deskripsi"></textarea>
+                                    <textarea class="form-control input-air-primary" id="givefeedback" required="" name="deskripsi">{{ old('deskripsi') }}</textarea>
                                     <div class="invalid-feedback">Please enter a message in the textarea.
                                     </div>
                                 </div>
@@ -134,9 +139,7 @@
                         </div>
                         <div class="card-footer text-end">
                             <button class="btn btn-primary me-3" type="submit">Submit</button>
-                            <a href="/produk">
-                                <input class="btn btn-light" type="reset" value="Cancel">
-                            </a>
+                            <a href="/produk" class="btn btn-light">Cancel</a>
                         </div>
                     </form>
                 </div>

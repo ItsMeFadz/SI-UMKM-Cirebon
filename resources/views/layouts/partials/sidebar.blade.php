@@ -30,69 +30,79 @@
                             <h6 class="lan-1">General</h6>
                         </div>
                     </li>
-                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a
-                            class="sidebar-link sidebar-title link-nav" href="/dashboard">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
-                            </svg>
-                            <span>Dashboard</span></a></li>
-                    <li class="sidebar-list">
-                        <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-widget') }}"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg') }}"></use>
-                            </svg><span>Master Data</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="/satuan">Satuan</a></li>
-                            <li><a href="/kategori">Kategori</a></li>
-                        </ul>
-                    </li>
+                    @if (auth()->user()->role == 0 || auth()->user()->role == 1)
+                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a
+                                class="sidebar-link sidebar-title link-nav" href="/dashboard">
+                                <svg class="stroke-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
+                                </svg>
+                                <span>Dashboard</span></a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->role == 0)
+                        <li class="sidebar-list">
+                            <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                                <svg class="stroke-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-widget') }}"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg') }}"></use>
+                                </svg><span>Master Data</span></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/satuan">Satuan</a></li>
+                                <li><a href="/kategori">Kategori</a></li>
+                            </ul>
+                        </li>
+                    @endif
                     <li class="sidebar-main-title">
                         <div>
                             <h6 class="lan-8">Applications</h6>
                         </div>
                     </li>
-                    <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title"
-                            href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-ui-kits') }}"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-ui-kits') }}"></use>
-                            </svg><span>Daerah</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="/kecamatan">Kecamatan</a></li>
-                            <li><a href="/kabupaten">Kabupaten</a></li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
-                            href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-ecommerce') }}"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-ecommerce') }}"></use>
-                            </svg><span>Ecommerce</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="/produk">Produk</a></li>
-                            <li><a href="/profil-umkm">Profil UMKM</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a
-                            class="sidebar-link sidebar-title link-nav" href="/pengguna">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-user') }}"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('assets/svg/icon-sprite.svg#fill-user') }}"></use>
-                            </svg><span>Pengguna</span></a>
-                    </li>
+                    @if (auth()->user()->role == 0)
+                        <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title"
+                                href="#">
+                                <svg class="stroke-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-ui-kits') }}"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-ui-kits') }}"></use>
+                                </svg><span>Daerah</span></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/kecamatan">Kecamatan</a></li>
+                                <li><a href="/kabupaten">Kabupaten</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if (auth()->user()->role == 0 || auth()->user()->role == 1)
+                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
+                                href="#">
+                                <svg class="stroke-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-ecommerce') }}"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#fill-ecommerce') }}"></use>
+                                </svg><span>Ecommerce</span></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/produk">Produk</a></li>
+                                <li><a href="/profil-umkm">Profil UMKM</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if (auth()->user()->role == 0)
+                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a
+                                class="sidebar-link sidebar-title link-nav" href="/pengguna">
+                                <svg class="stroke-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-user') }}"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="{{ asset('assets/svg/icon-sprite.svg#fill-user') }}"></use>
+                                </svg><span>Pengguna</span></a>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
