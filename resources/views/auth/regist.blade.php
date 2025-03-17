@@ -174,9 +174,12 @@
                                             <div class="col-sm-6">
                                                 <label class="form-label" for="email-basic">Link WhatsApp<span
                                                         class="txt-danger">*</span></label>
-                                                <input class="form-control" id="email-basic" type="text" required
-                                                    placeholder="wa.me/628xxxxxx" name="link_wa"
-                                                    value="{{ old('link_wa') }}">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">+62</span>
+                                                    <input type="text" class="form-control"
+                                                        name="link_wa" value="{{ old('link_wa') }}" pattern="[0-9]*"
+                                                        inputmode="numeric">
+                                                </div>
                                                 <div class="invalid-feedback">Please enter your WhatsApp link</div>
                                                 <div class="valid-feedback">Looks Good!</div>
                                             </div>

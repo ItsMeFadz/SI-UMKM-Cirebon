@@ -135,6 +135,17 @@ class LoginController extends Controller
                 $fotoPath = $file->storeAs('umkm_profiles', $fileName, 'public');
             }
 
+            if ($request->link_wa) {
+                $nomor_wa = preg_replace('/[^0-9]/', '', $request->link_wa); // Hanya ambil angka
+                if (str_starts_with($nomor_wa, '0')) {
+                    $nomor_wa = '62' . substr($nomor_wa, 1); // Ubah 081234 menjadi 6281234
+                } elseif (!str_starts_with($nomor_wa, '62')) {
+                    $nomor_wa = '62' . $nomor_wa; // Jika tidak ada 62 atau 0, tambahkan 62
+                }
+            } else {
+                $nomor_wa = null;
+            }
+
             // Create or update UMKM record
             if ($user->umkm) {
                 // Update the UMKM model that was automatically created in User's booted method

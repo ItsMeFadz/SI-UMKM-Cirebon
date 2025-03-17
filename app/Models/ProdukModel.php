@@ -33,4 +33,10 @@ class ProdukModel extends Model
         return $this->belongsTo(SatuanModel::class, 'id_satuan');
     }
 
+    public function umkm()
+    {
+        return $this->belongsTo(UmkmModel::class, 'id_pengguna', 'id_pengguna');
+    }
+
+
 }

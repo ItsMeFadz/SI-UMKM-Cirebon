@@ -14,4 +14,5 @@ class KategoriModel extends Model
     protected $fillable = [
         'nama_kategori',
     ];
+
 }

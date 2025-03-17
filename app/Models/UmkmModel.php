@@ -29,4 +29,25 @@ class UmkmModel extends Model
     {
         return $this->belongsTo(User::class, 'id_pengguna', 'id');
     }
+    
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriModel::class, 'id_kategori', 'id_kategori');
+    }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(KabupatenModel::class, 'id_kabupaten', 'id_kabupaten');
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(KecamatanModel::class, 'id_kecamatan', 'id_kecamatan');
+    }
+
+    public function produk()
+    {
+        return $this->hasMany(ProdukModel::class, 'id_pengguna', 'id_pengguna');
+    }
+
 }

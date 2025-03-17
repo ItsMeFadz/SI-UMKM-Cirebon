@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\ProdukController;
@@ -22,12 +23,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/notfound', [LoginController::class, 'notfound']);
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/umkm', [LandingController::class, 'list_umkm'])->name('list-umkm');
+Route::get('/umkm/details-umkm/{id}', [LandingController::class, 'details_umkm'])->name('details-umkm');
+Route::get('/produk/details-product/{id}', [LandingController::class, 'details_product'])->name('details');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/registrasi', [LoginController::class, 'registrasi'])->name('registrasi');
 Route::post('/login/login-proses', [LoginController::class, 'login_proses'])->name('login_proses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/registrasi/proses', [LoginController::class, 'registrasiProses'])->name('proses');
+Route::get('/notfound', [LoginController::class, 'notfound']);
 
 Route::middleware('auth')->group(function () {
     Route::controller(DashboardController::class)->group(function () {

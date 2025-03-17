@@ -128,11 +128,15 @@
                                 </div>
                                 <div class="col-sm-6 col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Link Wa</label>
-                                        <input class="form-control input-air-primary" name="link_wa"
-                                            value="{{ $user->umkm->link_wa ?? '' }}">
+                                        <label class="form-label">WhatsApp</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">+62</span>
+                                            <input type="text" class="form-control input-air-primary" name="link_wa" 
+                                                value="{{ $user->umkm->link_wa ? substr($user->umkm->link_wa, 2) : '' }}"
+                                                pattern="[0-9]*" inputmode="numeric">
+                                        </div>
                                     </div>
-                                </div>
+                                </div>                                                                
                                 <div class="col-sm-6 col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Link Marketplace</label>

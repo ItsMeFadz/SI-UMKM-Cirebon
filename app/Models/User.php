@@ -30,6 +30,7 @@ class User extends Authenticatable
         'role', // 0 == admin, 1 == penjual
         'password', 
         'disetujui', // 0 == tidak disetujui, 1 == disetujui 
+        'remember_token'
     ];
 
     protected $appends = ['kelola_umkm'];
@@ -60,7 +61,7 @@ class User extends Authenticatable
         static::created(function ($user) {
             DB::transaction(function () use ($user) {
                 $umkm = UmkmModel::create([
-                    'nama_umkm' => $user->name . ' UMKM',
+                    // 'nama_umkm' => $user->name . ' UMKM',
                     'nama_pemilik' => $user->name,
                     'id_pengguna' => $user->id
                 ]);

@@ -112,11 +112,23 @@ class ProfilumkmController extends Controller
                 ->withInput();
         }
 
+        if ($request->link_wa) {
+            $nomor_wa = preg_replace('/[^0-9]/', '', $request->link_wa); // Hanya ambil angka
+            if (str_starts_with($nomor_wa, '0')) {
+                $nomor_wa = '62' . substr($nomor_wa, 1); // Ubah 081234 menjadi 6281234
+            } elseif (!str_starts_with($nomor_wa, '62')) {
+                $nomor_wa = '62' . $nomor_wa; // Jika tidak ada 62 atau 0, tambahkan 62
+            }
+        } else {
+            $nomor_wa = null;
+        }
+
         $umkm = UmkmModel::findOrFail($id);
 
         // Update fields
         $umkm->nama_umkm = $request->nama_umkm;
-        $umkm->link_wa = $request->link_wa;
+        // $umkm->link_wa = $request->link_wa;
+        $umkm->link_wa = $nomor_wa;
         $umkm->link_marketplace = $request->link_marketplace;
         $umkm->link_gmaps = $request->link_gmaps;
         $umkm->id_kategori = $request->id_kategori;

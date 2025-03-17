@@ -29173,6 +29173,14 @@ footer {
     line-height: 45px
 }
 
+.ui-slider-handle {
+    transition: left 0.3s ease-in-out; /* Animasi gerakan handle */
+}
+
+#amount {
+    transition: all 0.3s ease-in-out; /* Animasi perubahan teks */
+}
+
 .pricingtable .price-value .currency {
     vertical-align: top
 }
