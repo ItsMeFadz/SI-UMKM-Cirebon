@@ -27,13 +27,24 @@
     {{-- Body Container --}}
     <div class="container-fluid general-widget">
         <div class="row">
+            <div id="image-preview-container" class=" d-none">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Preview Produk</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <img id="preview-image" class="img-fluid" style="max-height: 200px; max-width: 200px;">
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header pb-0">
                         <h4>Form Edit Data</h4>
                     </div>
                     <hr>
-                    <form class="form mt-3" action="/produk/update/{{$produk->id_produk}}" enctype="multipart/form-data" method="post">
+                    <form class="form mt-3" action="/produk/update/{{ $produk->id_produk }}" enctype="multipart/form-data"
+                        method="post">
                         @csrf
                         @method('POST')
                         <div class="card-body">
@@ -42,7 +53,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="name">Nama Produk<span
                                                 class="txt-danger">*</span></label>
-                                        <input class="form-control input-air-primary" id="name" name="name" value="{{ $produk->name }}">
+                                        <input class="form-control input-air-primary" id="name" name="name"
+                                            value="{{ $produk->name }}">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -88,7 +100,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="stok">Stok<span
                                                 class="txt-danger">*</span></label>
-                                        <input class="form-control input-air-primary" name="stok" type="number" value="{{ $produk->stok }}">
+                                        <input class="form-control input-air-primary" name="stok" type="number"
+                                            value="{{ $produk->stok }}">
                                         @error('stok')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -98,7 +111,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="harga">Harga<span
                                                 class="txt-danger">*</span></label>
-                                        <input class="form-control input-air-primary" name="harga" id="harga" value="{{ $produk->harga }}">
+                                        <input class="form-control input-air-primary" name="harga" id="harga"
+                                            value="{{ $produk->harga }}">
                                         @error('harga')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -128,7 +142,7 @@
                                 <div class="col-12">
                                     <label class="form-label" for="givefeedback">Deskripsi<span
                                             class="txt-danger">*</span></label>
-                                    <textarea class="form-control input-air-primary" id="givefeedback" required="" name="deskripsi">{{$produk->deskripsi}}</textarea>
+                                    <textarea class="form-control input-air-primary" id="givefeedback" required="" name="deskripsi">{{ $produk->deskripsi }}</textarea>
                                     <div class="invalid-feedback">Please enter a message in the textarea.
                                     </div>
                                 </div>
@@ -139,6 +153,37 @@
                             <a href="/produk" class="btn btn-light">Cancel</a>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="cropped_image" id="cropped-image-input">
+
+    <!-- Modal for Cropper -->
+    <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropperModalLabel">Crop Gambar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="img-container">
+                        <img id="cropper-image" src="" class="img-fluid" alt="Preview Image">
+                    </div>
+                    <div class="mt-1">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" id="zoom-in">
+                            <i class="fa fa-search-plus"></i> Zoom In
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" id="zoom-out">
+                            <i class="fa fa-search-minus"></i> Zoom Out
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="crop-image">Crop &
+                        Simpan</button>
                 </div>
             </div>
         </div>

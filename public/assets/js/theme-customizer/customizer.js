@@ -299,4 +299,97 @@
             $("html").attr("dir", layout);
         });
     });
+
+    // Add this script to your page, ideally at the end of the body or in a separate JS file
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.getElementById('formFileDocument');
+        const cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
+        const cropperImage = document.getElementById('cropper-image');
+        const previewImage = document.getElementById('preview-image');
+        const croppedImageInput = document.getElementById('cropped-image-input');
+        let cropper;
+    
+        // Event saat file diinput
+        fileInput.addEventListener('change', function(event) {
+            const files = event.target.files;
+            if (files && files.length > 0) {
+                const file = files[0];
+    
+                if (!file.type.startsWith('image/')) {
+                    alert('Silakan pilih file gambar.');
+                    return;
+                }
+    
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    cropperImage.src = e.target.result;
+                    cropperModal.show();
+    
+                    // Inisialisasi Cropper setelah gambar dimuat
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+    
+                    cropper = new Cropper(cropperImage, {
+                        aspectRatio: 1, // Square crop
+                        viewMode: 1,
+                        responsive: true,
+                        minContainerWidth: 300, 
+                        minContainerHeight: 300,
+                        minCropBoxWidth: 600, // Set minimum crop box width
+                        minCropBoxHeight: 600, // Set minimum crop box height
+                        zoomable: true,
+                        zoomOnWheel: true,
+                        scalable: true
+                    });
+                };
+    
+                reader.readAsDataURL(file);
+            }
+        });
+    
+        // Event saat tombol Crop ditekan
+        document.getElementById('crop-image').addEventListener('click', function() {
+            if (!cropper) return;
+    
+            // Ambil canvas hasil crop
+            const canvas = cropper.getCroppedCanvas({
+                width: 600,
+                height: 600,
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
+            });
+    
+            // Konversi canvas ke blob
+            canvas.toBlob(function(blob) {
+                const croppedFile = new File([blob], 'cropped-image.png', { type: 'image/png' });
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(croppedFile);
+                fileInput.files = dataTransfer.files;
+    
+                // Tampilkan preview gambar
+                const previewUrl = URL.createObjectURL(blob);
+                previewImage.src = previewUrl;
+                document.getElementById('image-preview-container').classList.remove('d-none');
+    
+                // Simpan data URL hasil crop di input hidden
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    croppedImageInput.value = e.target.result;
+                };
+                reader.readAsDataURL(blob);
+    
+                // Tutup modal
+                cropperModal.hide();
+            }, 'image/png');
+        });
+        document.getElementById('zoom-in').addEventListener('click', function() {
+            cropper.zoom(0.1);
+        });
+        
+        document.getElementById('zoom-out').addEventListener('click', function() {
+            cropper.zoom(-0.1);
+        });
+    });
 })(jQuery);

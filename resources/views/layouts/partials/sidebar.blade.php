@@ -1,21 +1,22 @@
 <div class="sidebar-wrapper" data-layout="stroke-svg">
     <div>
-        <div class="logo-wrapper"><a href="index.html"> <img class="img-fluid for-light"
-                    src="{{ asset('assets/images/logo/logo.png') }}" alt=""><img class="img-fluid for-dark"
-                    src="{{ asset('assets/images/logo/logo_dark.png') }}" alt=""></a>
+        <div class="logo-wrapper"><a href="/"> <img class="img-fluid for-light" style="width: 160px; height: 40px;"
+                    src="{{ asset('assets/images/logo/banner-dark.png') }}" alt=""><img class="img-fluid for-dark"
+                    src="{{ asset('assets/images/logo/banner-light.png') }}" style="width: 160px; height: 40px;"
+                    alt=""></a>
             <div class="toggle-sidebar">
                 <svg class="sidebar-toggle">
                     <use href="{{ asset('assets/svg/icon-sprite.svg#toggle-icon') }}"></use>
                 </svg>
             </div>
         </div>
-        <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
+        <div class="logo-icon-wrapper"><a href="/"><img class="img-fluid"
                     src="{{ asset('assets/images/logo/logo-icon.png') }}" alt=""></a></div>
         <nav class="sidebar-main">
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
             <div id="sidebar-menu">
                 <ul class="sidebar-links" id="simple-bar">
-                    <li class="back-btn"><a href="index.html"><img class="img-fluid"
+                    <li class="back-btn"><a href="/"><img class="img-fluid"
                                 src="{{ asset('assets/images/logo/logo-icon.png') }}" alt=""></a>
                         <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                                 aria-hidden="true"></i></div>

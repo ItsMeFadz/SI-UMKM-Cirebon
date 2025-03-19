@@ -49,6 +49,7 @@
 <!-- Theme JS -->
 <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 
 <!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

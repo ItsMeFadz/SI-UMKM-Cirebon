@@ -48,41 +48,42 @@
                     <div class="tpsection">
                         <h6 class="tpsection__title text-start brand-product-title">Produk : </h6>
                     </div>
-                    <div class="row pt-20">
-                        <div class="col-lg-12">
-                            <div class="row">
-                                @foreach ($produk as $item)
-                                    <div class="col-xl-3 col-lg-6">
-                                        <div class="tpbrandproduct__item d-flex mb-20">
-                                            <div class="tpbrandproduct__img p-relative">
-                                                <img src="{{ asset('storage/' . $item->gambar) }}" alt=""
-                                                    style="width: 100px; height: 100px; object-fit: cover; border-radius: 7px;">
-                                                <div class="tpproduct__info bage tpbrandproduct__bage">
-                                                    <span class="tpproduct__info-discount bage__discount">New</span>
+                    @if ($produk->count() > 0)
+                        <div class="row pt-20">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    @foreach ($produk as $item)
+                                        <div class="col-xl-3 col-lg-6">
+                                            <div class="tpbrandproduct__item d-flex mb-20">
+                                                <div class="tpbrandproduct__img p-relative">
+                                                    <a href="/produk/details-product/{{ $item->id_produk }}"><img src="{{ asset('storage/' . $item->gambar) }}" alt=""
+                                                        style="width: 100px; height: 100px; object-fit: cover; border-radius: 7px;"></a>
+                                                    <div class="tpproduct__info bage tpbrandproduct__bage">
+                                                        <span class="tpproduct__info-discount bage__discount">New</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="tpbrandproduct__contact">
-                                                <span class="tpbrandproduct__product-title"><a
-                                                        href="/produk/details-product/{{ $item->id_produk }}">
-                                                        {{ $item->name }}</a></span>
-                                                {{-- <div class="tpproduct__rating mb-5">
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                </div> --}}
-                                                <h5 class="tpcontact-inner-sub-title">{{$item->satuan->nama_satuan}}</h5>
-                                                <div class="tpproduct__price">
-                                                    <span>Rp {{ number_format($item->harga, 0, ',', '.') }}</span>
+                                                <div class="tpbrandproduct__contact">
+                                                    <span class="tpbrandproduct__product-title"><a
+                                                            href="/produk/details-product/{{ $item->id_produk }}">
+                                                            {{ $item->name }}</a></span>
+                                                    <h5 class="tpcontact-inner-sub-title">{{$item->stok}}
+                                                        {{ $item->satuan->nama_satuan }}</h5>
+                                                    <div class="tpproduct__price">
+                                                        <span>Rp {{ number_format($item->harga, 0, ',', '.') }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="text-center py-4">
+                            <h5>Produk Belum Tersedia</h5>
+                        </div>
+                    @endif
+
                 </div>
                 <div class="sections__wrapper white-bg pl-50 pr-50 pb-20 brand-product">
                 </div>

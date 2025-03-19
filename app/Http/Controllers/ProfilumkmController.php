@@ -43,6 +43,34 @@ class ProfilumkmController extends Controller
             'kec' => $kec,
         ]);
     }
+    public function visit_umkm($id)
+    {
+        // Ambil ID pengguna yang sedang login
+        
+        // Ambil data UMKM berdasarkan user yang login
+        // $umkm = \DB::table('kelola_umkm')->where('id_pengguna', $userId)->first();
+
+        $userKat = $umkm->id_kategori ?? null;
+        $userKab = $umkm->id_kabupaten ?? null;
+        $userKec = $umkm->id_kecamatan ?? null;
+
+        // Ambil daftar kategori, kabupaten, dan kecamatan
+        $kat = \DB::table('kategori')->select('id_kategori', 'nama_kategori')->distinct()->get();
+        $kab = \DB::table('kabupaten')->select('id_kabupaten', 'nama_kabupaten')->distinct()->get();
+        $kec = \DB::table('kecamatan')->select('id_kecamatan', 'nama_kecamatan')->distinct()->get();
+
+        return view('pages.profil-umkm.index', [
+            'title' => 'profil-umkm',
+            'active' => 'profil-umkm',
+            'user' => User::findOrFail($id),
+            'userKat' => $userKat,
+            'userKab' => $userKab,
+            'userKec' => $userKec,
+            'kat' => $kat,
+            'kab' => $kab,
+            'kec' => $kec,
+        ]);
+    }
 
     public function update_account(Request $request, $id)
     {

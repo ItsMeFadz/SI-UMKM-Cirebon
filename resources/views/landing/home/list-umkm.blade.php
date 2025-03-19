@@ -80,6 +80,40 @@
 
     <!-- JS here -->
     @include('landing.layouts.partials.script')
+    {{-- <script>
+        $(document).ready(function() {
+            let itemsPerPage = 8; // Jumlah item per halaman
+            let $items = $('.tpchoose__item'); // Semua item UMKM
+            let totalPages = Math.ceil($items.length / itemsPerPage);
+            let $pagination = $('.basic-pagination ul');
+
+            function showPage(page) {
+                $items.parent().hide(); // Sembunyikan semua card
+                let start = (page - 1) * itemsPerPage;
+                let end = start + itemsPerPage;
+                $items.slice(start, end).parent().fadeIn(300); // Munculkan card dengan efek fade
+            }
+
+            function renderPagination() {
+                $pagination.empty();
+                for (let i = 1; i <= totalPages; i++) {
+                    let activeClass = i === 1 ? 'current' : '';
+                    $pagination.append(`<li><a href="#" class="${activeClass}" data-page="${i}">${i}</a></li>`);
+                }
+            }
+
+            $pagination.on('click', 'a', function(e) {
+                e.preventDefault();
+                let page = parseInt($(this).attr('data-page'));
+                $('.basic-pagination ul li a').removeClass('current');
+                $(this).addClass('current');
+                showPage(page);
+            });
+
+            renderPagination();
+            showPage(1); // Tampilkan halaman pertama saat halaman dimuat
+        });
+    </script> --}}
 </body>
 
 </html>

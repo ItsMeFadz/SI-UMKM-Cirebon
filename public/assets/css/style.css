@@ -52161,6 +52161,12 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
     border: 3px solid #ddd; /* Opsional: Menambahkan border */
 }
 
+.profile-media img.b-r-25 {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
 .img-thumbnail {
     width: 80px;
     height: 80px;
@@ -52168,5 +52174,24 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
     border-radius: 5px;
     border: 1px solid #ddd;
     padding: 3px;
+}
+
+.img-container {
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    height: auto; /* Changed from fixed height */
+    padding: 20px;
+}
+
+.img-container img {
+    display: block;
+    max-width: 100%;
+    max-height: 30vh; /* Control maximum height relative to viewport */
+}
+
+/* Add this to make the cropper more visible */
+.cropper-container {
+    margin: 0 auto;
 }
 

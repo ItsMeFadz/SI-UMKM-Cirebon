@@ -66,10 +66,9 @@
                             <div class="tpshop__banner mb-30"
                                 data-background="{{ asset('assetsLand/img/banner/shop-bg-1.jpg') }}">
                                 <div class="tpshop__content text-center">
-                                    <span>The Salad</span>
-                                    <h4 class="tpshop__content-title mb-20">Fresh & Natural <br>Healthy Food Special
-                                        Offer</h4>
-                                    <p>Do not miss the current offers of us!</p>
+                                    <span>Umkm - Cirebon</span>
+                                    <h4 class="tpshop__content-title mb-20">Pusat Perbelanjaan Online Cirebon <br> Tersedia Berbagai Pilihan Produk</h4>
+                                    <p>Ayo Belanja Sekarang Juga !</p>
                                 </div>
                             </div>
                             <div class="product__filter-content mb-40">
@@ -259,13 +258,8 @@
                                                             <a
                                                                 href="/produk/details-product/{{ $item->id_produk }}">{{ $item->name }}</a>
                                                         </h4>
-                                                        <div class="tpproduct__rating mb-5">
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                        </div>
+                                                        <h5 class="tpcontact-inner-sub-title">{{$item->stok}}
+                                                            {{ $item->satuan->nama_satuan }}</h5>
                                                         <div class="tpproduct__price">
                                                             <span>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</span>
                                                         </div>
@@ -327,13 +321,8 @@
                                                         <h4 class="tpproduct__title">
                                                             <a href="">{{ $item->name }}</a>
                                                         </h4>
-                                                        <div class="tpproduct__rating mb-5">
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                            <a href="#"><i class="icon-star_outline1"></i></a>
-                                                        </div>
+                                                        <h5 class="tpcontact-inner-sub-title">{{$item->stok}}
+                                                            {{ $item->satuan->nama_satuan }}</h5>
                                                         <div class="tpproduct__price">
                                                             <span>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</span>
                                                             @if ($item->discount_price)
@@ -401,10 +390,6 @@
                                                             {{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</h3>
                                                         <a href="/produk/details-product/{{ $item->id_produk }}"
                                                             class="tp-btn-2 mb-10">Beli</a>
-                                                        {{-- <div class="tplist__shopping">
-                                                        <a href=""><i class="icon-heart icons"></i>wishlist</a>
-                                                        <a href=""><i class="icon-layers"></i>Compare</a>
-                                                    </div> --}}
                                                     </div>
                                                 </div>
                                             </div>

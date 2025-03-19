@@ -3,24 +3,32 @@
         <div class="container">
             <div class="header__for-megamenu p-relative">
                 <div class="row align-items-center">
-                    <div class="col-xl-3">
+                    <div class="col-xl-4">
                         <div class="header__logo">
-                            <a href="index.html"><img src="{{ asset('assetsLand/img/logo/logo.png') }}"
-                                    alt="logo"></a>
+                            <a href="/"><img src="{{ asset('assetsLand/img/logo/logo-2.png') }}"
+                                    alt="logo" style="height: 90px; width: 90px;"></a>
                         </div>
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-xl-5">
                         <div class="header__menu main-menu text-center">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li><a href="/">Beranda</a></li>
-                                    <li><a href="/umkm">Daftar UMKM</a></li>
-                                    <li><a href="about.html">Tentang Kita</a></li>
-                                    <li><a href="contact.html">Hubungi Kami</a></li>
+                                    <li class="menu-item {{ $active === 'landing' ? 'active' : '' }}">
+                                        <a href="/">Beranda</a>
+                                    </li>
+                                    <li class="menu-item {{ $active === 'list-umkm' ? 'active' : '' }}">
+                                        <a href="/umkm">Daftar UMKM</a>
+                                    </li>
+                                    <li class="menu-item {{ $active === 'tentang-kita' ? 'active' : '' }}">
+                                        <a href="/about-us">Tentang Kita</a>
+                                    </li>
+                                    <li class="menu-item {{ $active === 'kontak' ? 'active' : '' }}">
+                                        <a href="/contact-us">Hubungi Kami</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
-                    </div>
+                    </div>                    
                     <div class="col-xl-3">
                         <div class="header__info d-flex align-items-center">
                             <div class="header__info-search tpcolor__purple ml-10">

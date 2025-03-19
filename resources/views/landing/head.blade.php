@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Orfarm - Multipurpose eCommerce HTML5 Template </title>
+    <title>UMKM - Cirebon </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assetsLand/img/logo/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assetsLand/img/logo/icon.png') }}">
 
     <!-- CSS here -->
     {{-- <link rel="stylesheet" href="{{asset('assetsLand/css/bootstrap.min.css')}}">

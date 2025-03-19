@@ -10,8 +10,8 @@
     <meta name="keywords"
         content="admin template, Zono admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    {{-- <link rel="icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon"> --}}
+    <link rel="icon" href="{{asset('assets/images/icon.png')}}" type="image/x-icon">
+    {{-- <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon"> --}}
     <title>UMKM Cirebon</title>
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,4 +44,5 @@
     <link id="color" rel="stylesheet" href="{{asset('assets/css/color-1.css')}}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
 </head>

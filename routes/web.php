@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KategoriController;
@@ -25,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/umkm', [LandingController::class, 'list_umkm'])->name('list-umkm');
+Route::get('/about-us', [LandingController::class, 'about_us'])->name('tentang-kita');
+Route::get('/contact-us', [LandingController::class, 'contact_us'])->name('kontak');
+Route::post('/send-message', [ContactController::class, 'sendMessage'])->name('send.message');
 Route::get('/umkm/details-umkm/{id}', [LandingController::class, 'details_umkm'])->name('details-umkm');
 Route::get('/produk/details-product/{id}', [LandingController::class, 'details_product'])->name('details');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -99,6 +103,7 @@ Route::middleware('auth')->group(function () {
     
     Route::controller(ProfilumkmController::class)->group(function () {
         Route::get('/profil-umkm', 'index');
+        Route::get('/profil-umkm/{id}', 'visit_umkm');
         Route::post('/profil-umkm/update_account/{id}', 'update_account');
         Route::post('/profil-umkm/update_umkm/{id}', 'update_umkm');
     });

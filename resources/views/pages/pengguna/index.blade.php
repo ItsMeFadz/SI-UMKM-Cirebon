@@ -44,8 +44,9 @@
                                     <tr>
                                         <th>Nama pengguna</th>
                                         <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Aktivitas Pengguna</th>
+                                        <th class="text-center">Role</th>
+                                        <th class="text-center">Aktivitas Pengguna</th>
+                                        <th>Nama UMKM</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -55,22 +56,27 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             {{-- <td>{{ $item->role == 0 ? 'Admin' : 'Penjual' }}</td> --}}
-                                            <td>
+                                            <td class="text-center">
                                                 @if ($item->role == 0)
                                                     <span class="badge badge-light-primary">Admin</span>
                                                 @else
                                                     <span class="badge badge-light-warning">Penjual</span>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 @if ($item->disetujui == 0)
                                                     <span class="badge badge-light-danger">Tidak Aktif</span>
                                                 @else
                                                     <span class="badge badge-light-success">Aktif</span>
                                                 @endif
                                             </td>
+                                            <td>{{ $item->umkm->nama_umkm }}</td>
                                             <td>
                                                 <ul class="action">
+                                                    <li>
+                                                        <a href="/profil-umkm/{{ $item->id }}"><i class="icon-eye mx-1"
+                                                                style="color:blueviolet"></i></a>
+                                                    </li>
                                                     <li>
                                                         <a href="pengguna/edit/{{ $item->id }}"><i
                                                                 class="icon-pencil-alt"></i></a>

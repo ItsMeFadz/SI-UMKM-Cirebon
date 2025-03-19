@@ -9,14 +9,6 @@
             <div class="col-12 p-0">
                 <div class="login-card login-dark">
                     <div>
-                        <div>
-                            <a class="logo" href="index.html">
-                                <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}"
-                                    alt="looginpage">
-                                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}"
-                                    alt="looginpage">
-                            </a>
-                        </div>
                         <div class="login-main">
                             <form class="theme-form" action="{{ route('login_proses') }}" method="POST">
                                 @csrf

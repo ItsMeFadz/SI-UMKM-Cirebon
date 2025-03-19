@@ -12,7 +12,9 @@ class LandingController extends Controller
 {
     public function index()
     {
-        $produk = ProdukModel::with(['kategori', 'satuan'])->get();
+        $produk = ProdukModel::with(['kategori', 'satuan'])
+                ->orderBy('name', 'asc') // Urutkan berdasarkan nama produk secara ascending
+                ->get();
         $kategori = KategoriModel::orderBy('nama_kategori', 'asc')->get();
 
         return view('landing.home.produk', [
@@ -34,12 +36,35 @@ class LandingController extends Controller
         ]);
     }
 
+    public function about_us()
+    {
+
+        $jumlahKategori = KategoriModel::count(); 
+        $jumlahUMKM = UmkmModel::count(); 
+        $jumlahProduk = ProdukModel::count();
+        return view('landing.home.tentang-kita', [
+            'title' => 'tentang-kita',
+            'active' => 'tentang-kita',
+            'jumlahKategori' => $jumlahKategori,
+            'jumlahUMKM' => $jumlahUMKM,
+            'jumlahProduk' => $jumlahProduk,
+        ]);
+    }
+
+    public function contact_us()
+    {
+        return view('landing.home.kontak', [
+            'title' => 'kontak',
+            'active' => 'kontak',
+        ]);
+    }
+
     public function details_umkm($id)
     {
         $umkm = UmkmModel::with('produk')->findOrFail($id);
         return view('landing.home.detail-umkm', [
             'title' => 'details-umkm',
-            'active' => 'details-umkm',
+            'active' => 'list-umkm',
             'umkm' => UmkmModel::findOrFail($id),
             'produk' => $umkm->produk,
         ]);
@@ -58,10 +83,10 @@ class LandingController extends Controller
 
         return view('landing.home.detail-produk', [
             'title' => 'detail',
-            'active' => 'details',
+            'active' => 'landing',
             // 'produk' => ProdukModel::findOrFail($id),
             'produk' => $produk,
-            'produk_umkm' => $produk_umkm, 
+            'produk_umkm' => $produk_umkm,
         ]);
     }
 }

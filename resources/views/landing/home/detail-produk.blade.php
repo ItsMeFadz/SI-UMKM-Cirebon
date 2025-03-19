@@ -92,7 +92,7 @@
                                                                 Eccomerce</a>
                                                         </div>
                                                     </div>
-                                                    <ul class="product__details-check">
+                                                    {{-- <ul class="product__details-check">
                                                         <li>
                                                             <a href="#"><i class="icon-heart icons"></i> add to
                                                                 wishlist</a>
@@ -104,7 +104,7 @@
                                                         <li>
                                                             <a href="#"><i class="icon-share-2"></i> Share</a>
                                                         </li>
-                                                    </ul>
+                                                    </ul> --}}
                                                 </div>
                                                 <div class="product__details-stock mb-25">
                                                     <ul>
@@ -135,72 +135,64 @@
                     </div>
                 </div>
                 <div class="tpproduct__arrow double-product p-relative">
-                    <div class="swiper-container tpproduct-active tpslider-bottom p-relative">
-                        <div class="swiper-wrapper">
-                            <div class="row row-cols-sm-2 row-cols-1 tpproduct__shop-item">
-                                @foreach ($produk_umkm as $item)
-                                    <div class="col">
-                                        <div class="tpproduct p-relative mb-20">
-                                            <div class="tpproduct__thumb p-relative text-center">
-                                                <a href="/produk/details-product/{{ $item->id_produk }}"><img
-                                                        src="{{ asset('storage/' . $item->gambar) }}"
-                                                        alt="{{ $item->name }}"
-                                                        style="width:180px; height: 180px; border-radius: 7px;"></a>
-                                                <div class="tpproduct__info bage" style="top: 13px">
-                                                    @if ($item->discount)
-                                                        <span
-                                                            class="tpproduct__info-discount bage__discount">-{{ $item->discount }}%</span>
-                                                    @endif
-                                                    <span class="tpproduct__info-hot bage__hot">New</span>
-                                                </div>
-                                                <div class="tpproduct__shopping">
-                                                    <a class="tpproduct__shopping-wishlist" href="#"><i
-                                                            class="icon-heart icons"></i></a>
-                                                    <a class="tpproduct__shopping-wishlist" href="#"><i
-                                                            class="icon-layers"></i></a>
-                                                    <a class="tpproduct__shopping-cart"
-                                                        href="/produk/details-product/{{ $item->id_produk }}"><i
-                                                            class="icon-eye"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="tpproduct__content">
-                                                <span class="tpproduct__content-weight">
-                                                    <a href="">{{ $item->kategori->nama_kategori }}</a>
-                                                </span>
-                                                <h4 class="tpproduct__title">
-                                                    <a
-                                                        href="/produk/details-product/{{ $item->id_produk }}">{{ $item->name }}</a>
-                                                </h4>
-                                                <div class="tpproduct__rating mb-5">
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                </div>
-                                                <div class="tpproduct__price">
-                                                    <span>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</span>
-                                                </div>
-                                            </div>
-                                            <div class="tpproduct__hover-text">
-                                                <div class="tpproduct__hover-btn d-flex justify-content-center mb-10">
-                                                    <a class="tp-btn-2"
-                                                        href="/produk/details-product/{{ $item->id_produk }}">Details</a>
-                                                </div>
-                                                <div class="tpproduct__descrip">
-                                                    <ul>
-                                                        <li>Kategori : {{ $item->kategori->nama_kategori }}
-                                                        </li>
-                                                        <li>Satuan : {{ $item->satuan->nama_satuan }}</li>
-                                                        <li>Stok : {{ $item->stok }}</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                    <div
+                        class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 tpproduct__shop-item">
+                        @foreach ($produk_umkm as $item)
+                            <div class="col">
+                                <div class="tpproduct p-relative mb-20">
+                                    <div class="tpproduct__thumb p-relative text-center">
+                                        <a href="/produk/details-product/{{ $item->id_produk }}"><img
+                                                src="{{ asset('storage/' . $item->gambar) }}"
+                                                alt="{{ $item->name }}"
+                                                style="width:180px; height: 180px; border-radius: 7px;"></a>
+                                        <div class="tpproduct__info bage" style="top: 13px">
+                                            @if ($item->discount)
+                                                <span
+                                                    class="tpproduct__info-discount bage__discount">-{{ $item->discount }}%</span>
+                                            @endif
+                                            <span class="tpproduct__info-hot bage__hot">New</span>
+                                        </div>
+                                        <div class="tpproduct__shopping">
+                                            <a class="tpproduct__shopping-wishlist" href="#"><i
+                                                    class="icon-heart icons"></i></a>
+                                            <a class="tpproduct__shopping-wishlist" href="#"><i
+                                                    class="icon-layers"></i></a>
+                                            <a class="tpproduct__shopping-cart"
+                                                href="/produk/details-product/{{ $item->id_produk }}"><i
+                                                    class="icon-eye"></i></a>
                                         </div>
                                     </div>
-                                @endforeach
+                                    <div class="tpproduct__content">
+                                        <span class="tpproduct__content-weight">
+                                            <a href="">{{ $item->kategori->nama_kategori }}</a>
+                                        </span>
+                                        <h4 class="tpproduct__title">
+                                            <a
+                                                href="/produk/details-product/{{ $item->id_produk }}">{{ $item->name }}</a>
+                                        </h4>
+                                        <h5 class="tpcontact-inner-sub-title">{{ $item->stok }}
+                                            {{ $item->satuan->nama_satuan }}</h5>
+                                        <div class="tpproduct__price">
+                                            <span>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="tpproduct__hover-text">
+                                        <div class="tpproduct__hover-btn d-flex justify-content-center mb-10">
+                                            <a class="tp-btn-2"
+                                                href="/produk/details-product/{{ $item->id_produk }}">Details</a>
+                                        </div>
+                                        <div class="tpproduct__descrip">
+                                            <ul>
+                                                <li>Kategori : {{ $item->kategori->nama_kategori }}
+                                                </li>
+                                                <li>Satuan : {{ $item->satuan->nama_satuan }}</li>
+                                                <li>Stok : {{ $item->stok }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
