@@ -38,5 +38,11 @@ class ProdukModel extends Model
         return $this->belongsTo(UmkmModel::class, 'id_pengguna', 'id_pengguna');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_pengguna', 'id');
+    }
+
+
 
 }

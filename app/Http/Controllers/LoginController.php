@@ -84,7 +84,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('landing');
     }
 
     public function registrasiProses(Request $request)
@@ -124,7 +124,7 @@ class LoginController extends Controller
                 'email' => $request->email,
                 'password' => $request->password, // Will be hashed by the model's boot method
                 'role' => $request->role,
-                'disetujui' => 1, // Default to not approved
+                'disetujui' => 0, // Default to not appro   ved
             ]);
 
             // Handle file upload

@@ -74,6 +74,8 @@ class User extends Authenticatable
             if ($user->umkm) {
                 $user->umkm->delete();
             }
+
+            $user->produk()->delete();
         });
     }
 

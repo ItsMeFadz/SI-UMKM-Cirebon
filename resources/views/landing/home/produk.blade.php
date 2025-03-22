@@ -67,7 +67,8 @@
                                 data-background="{{ asset('assetsLand/img/banner/shop-bg-1.jpg') }}">
                                 <div class="tpshop__content text-center">
                                     <span>Umkm - Cirebon</span>
-                                    <h4 class="tpshop__content-title mb-20">Pusat Perbelanjaan Online Cirebon <br> Tersedia Berbagai Pilihan Produk</h4>
+                                    <h4 class="tpshop__content-title mb-20">Pusat Perbelanjaan Online Cirebon <br>
+                                        Tersedia Berbagai Pilihan Produk</h4>
                                     <p>Ayo Belanja Sekarang Juga !</p>
                                 </div>
                             </div>
@@ -258,7 +259,7 @@
                                                             <a
                                                                 href="/produk/details-product/{{ $item->id_produk }}">{{ $item->name }}</a>
                                                         </h4>
-                                                        <h5 class="tpcontact-inner-sub-title">{{$item->stok}}
+                                                        <h5 class="tpcontact-inner-sub-title"> 1
                                                             {{ $item->satuan->nama_satuan }}</h5>
                                                         <div class="tpproduct__price">
                                                             <span>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</span>
@@ -282,6 +283,26 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                    </div>
+                                    <div class="basic-pagination text-center mt-35">
+                                        <nav>
+                                            <ul>
+                                                <li>
+                                                    <span class="current">1</span>
+                                                </li>
+                                                <li>
+                                                    <a href="">2</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">3</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <i class="icon-chevrons-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show active whight-product" id="nav-popular"
@@ -321,7 +342,7 @@
                                                         <h4 class="tpproduct__title">
                                                             <a href="">{{ $item->name }}</a>
                                                         </h4>
-                                                        <h5 class="tpcontact-inner-sub-title">{{$item->stok}}
+                                                        <h5 class="tpcontact-inner-sub-title"> 1
                                                             {{ $item->satuan->nama_satuan }}</h5>
                                                         <div class="tpproduct__price">
                                                             <span>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</span>
@@ -351,6 +372,26 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                    </div>
+                                    <div class="basic-pagination text-center mt-35">
+                                        <nav>
+                                            <ul>
+                                                <li>
+                                                    <span class="current">1</span>
+                                                </li>
+                                                <li>
+                                                    <a href="">2</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">3</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <i class="icon-chevrons-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade whight-product" id="nav-product" role="tabpanel"
@@ -386,6 +427,8 @@
                                                         <h4 class="tplist__instock">Availability:
                                                             <span>{{ $item->stok > 0 ? $item->stok . ' in stock' : 'Out of stock' }}</span>
                                                         </h4>
+                                                        <h5 class="tpcontact-inner-sub-title">1
+                                                            {{ $item->satuan->nama_satuan }}</h5>
                                                         <h3 class="tplist__count mb-15">
                                                             {{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}</h3>
                                                         <a href="/produk/details-product/{{ $item->id_produk }}"
@@ -395,27 +438,27 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                    <div class="basic-pagination text-center mt-35">
+                                        <nav>
+                                            <ul>
+                                                <li>
+                                                    <span class="current">1</span>
+                                                </li>
+                                                <li>
+                                                    <a href="">2</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">3</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <i class="icon-chevrons-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="basic-pagination text-center mt-35">
-                                <nav>
-                                    <ul>
-                                        <li>
-                                            <span class="current">1</span>
-                                        </li>
-                                        <li>
-                                            <a href="">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="icon-chevrons-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
                             </div>
                         </div>
                     </div>

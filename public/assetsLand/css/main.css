@@ -8511,6 +8511,18 @@ only screen and (min-width: 992px) and (max-width: 1199px),
     border-radius: 30px;
 }
 
+.tpcontact-inner-sub-title-2 {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--tp-common-white);
+    background-color: var(--tp-heading-secondary);
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 30px;
+}
+
 .tpcontact-inner-title {
     font-family: "Quicksand";
     font-style: normal;

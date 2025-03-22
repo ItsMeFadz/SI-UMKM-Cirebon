@@ -1006,193 +1006,187 @@
 
     ////////////////////////////////////////////////////
     // 44. Price Filter Js
-    // if ($("#slider-range").length) {
-    //     $("#slider-range").slider({
-    //         range: true,
-    //         min: 0,
-    //         max: 1000000, // Ganti batas maksimum sesuai kebutuhan
-    //         step: 20000,
-    //         values: [0, 500000], // Sesuaikan dengan batas harga default
-    //         slide: function(event, ui) {
-    //             $("#amount").val("Rp " + ui.values[0].toLocaleString('id-ID') + " - Rp " + ui.values[1].toLocaleString('id-ID'));
-    //         }
-    //     });
-
-    //     $("#amount").val(
-    //         "Rp " + $("#slider-range").slider("values", 0).toLocaleString('id-ID') +
-    //         " - Rp " + $("#slider-range").slider("values", 1).toLocaleString('id-ID')
-    //     );
-
-    //     $('#filter-btn').on('click', function() {
-    //         $('.filter-widget').slideToggle(1000);
-    //     });
-    // }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Configuration
-        const itemsPerPage = 9; // Number of products per page
-        let currentPage = 1;
-        
-        // Get all product elements
-        const getProductElements = () => {
-            const activeTab = document.querySelector('.tab-pane.active');
-            if (!activeTab) return [];
-            
-            // Get all product elements in the active tab
-            if (activeTab.id === 'nav-product') {
-                return Array.from(activeTab.querySelectorAll('.row'));
-            } else {
-                return Array.from(activeTab.querySelectorAll('.col'));
+    if ($("#slider-range").length) {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 1000000, // Ganti batas maksimum sesuai kebutuhan
+            step: 20000,
+            values: [0, 500000], // Sesuaikan dengan batas harga default
+            slide: function(event, ui) {
+                $("#amount").val("Rp " + ui.values[0].toLocaleString('id-ID') + " - Rp " + ui.values[1].toLocaleString('id-ID'));
             }
-        };
-        
-        // Calculate total pages
-        const calculateTotalPages = (totalItems) => {
-            return Math.ceil(totalItems / itemsPerPage);
-        };
-        
-        // Show products for current page
-        const showCurrentPageItems = () => {
-            const products = getProductElements();
-            const totalPages = calculateTotalPages(products.length);
-            
-            // Hide all products
-            products.forEach(product => {
-                product.style.display = 'none';
-            });
-            
-            // Show products for current page
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = Math.min(startIndex + itemsPerPage, products.length);
-            
-            for (let i = startIndex; i < endIndex; i++) {
-                if (products[i]) {
-                    products[i].style.display = '';
-                }
-            }
-            
-            // Update pagination UI
-            updatePaginationUI(totalPages);
-            
-            // Update product count display
-            updateProductCount(startIndex + 1, endIndex, products.length);
-        };
-        
-        // Update pagination UI
-        const updatePaginationUI = (totalPages) => {
-            const paginationContainer = document.querySelector('.basic-pagination ul');
-            if (!paginationContainer) return;
-            
-            // Clear existing pagination
-            paginationContainer.innerHTML = '';
-            
-            // Add previous button if not on first page
-            if (currentPage > 1) {
-                const prevLi = document.createElement('li');
-                prevLi.innerHTML = `<a href="#" data-page="${currentPage - 1}"><i class="icon-chevrons-left"></i></a>`;
-                paginationContainer.appendChild(prevLi);
-            }
-            
-            // Add page numbers
-            const startPage = Math.max(1, currentPage - 2);
-            const endPage = Math.min(totalPages, currentPage + 2);
-            
-            for (let i = startPage; i <= endPage; i++) {
-                const pageLi = document.createElement('li');
-                if (i === currentPage) {
-                    pageLi.innerHTML = `<span class="current">${i}</span>`;
-                } else {
-                    pageLi.innerHTML = `<a href="#" data-page="${i}">${i}</a>`;
-                }
-                paginationContainer.appendChild(pageLi);
-            }
-            
-            // Add next button if not on last page
-            if (currentPage < totalPages) {
-                const nextLi = document.createElement('li');
-                nextLi.innerHTML = `<a href="#" data-page="${currentPage + 1}"><i class="icon-chevrons-right"></i></a>`;
-                paginationContainer.appendChild(nextLi);
-            }
-            
-            // Add event listeners to pagination links
-            paginationContainer.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = parseInt(this.getAttribute('data-page'));
-                    if (page && page !== currentPage) {
-                        currentPage = page;
-                        showCurrentPageItems();
-                        // Scroll to top of product section
-                        document.querySelector('.shop-area-start').scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-        };
-        
-        // Update product count display
-        const updateProductCount = (start, end, total) => {
-            const countElement = document.querySelector('.product__item-count span');
-            if (countElement) {
-                countElement.textContent = `Showing ${start} - ${end} of ${total} Products`;
-            }
-        };
-        
-        // Handle tab changes
-        const handleTabChange = () => {
-            // Reset to first page when changing tabs
-            currentPage = 1;
-            showCurrentPageItems();
-        };
-        
-        // Add event listeners to tab buttons
-        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
-            tab.addEventListener('shown.bs.tab', handleTabChange);
         });
-        
-        // Initialize pagination
-        showCurrentPageItems();
-        
-        // Handle sort changes
-        const sortSelector = document.querySelector('.nice-select');
-        if (sortSelector) {
-            sortSelector.addEventListener('change', function() {
-                // Reset to first page when sorting
-                currentPage = 1;
-                
-                // Here you could add sorting logic if needed
-                // For now, just update the pagination
-                showCurrentPageItems();
-            });
-        }
-        
-        // Handle category filter changes
-        document.querySelectorAll('.form-check-input').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                // Reset to first page when filtering
-                currentPage = 1;
-                
-                // Here you could add filtering logic
-                // For now, just update the pagination
-                showCurrentPageItems();
-            });
+
+        $("#amount").val(
+            "Rp " + $("#slider-range").slider("values", 0).toLocaleString('id-ID') +
+            " - Rp " + $("#slider-range").slider("values", 1).toLocaleString('id-ID')
+        );
+
+        $('#filter-btn').on('click', function() {
+            $('.filter-widget').slideToggle(1000);
         });
-        
-        // Handle price range filter
-        const priceSlider = document.getElementById('slider-range');
-        if (priceSlider) {
-            // If you're using jQuery UI slider, you might add a change event here
-            // For now, we'll just add a generic method you can call when price changes
-            window.handlePriceChange = function() {
-                currentPage = 1;
-                showCurrentPageItems();
-            };
-        }
-    });
+    }
     
 
-
-
 })(jQuery);
+
+
+// Pag
+document.addEventListener('DOMContentLoaded', function() {
+    // Configuration
+    const itemsPerPage = 8;
+    let currentPage = 1;
+
+    // Get all product elements
+    const initPagination = function(tabId) {
+        let products = [];
+
+        // Handle different product container structures for different tabs
+        if (tabId === 'nav-product') {
+            // For list view, products are direct children of the tab pane
+            const productTab = document.getElementById(tabId);
+            if (!productTab) return;
+
+            // Get all row elements that contain products
+            products = Array.from(productTab.querySelectorAll('.row'));
+        } else {
+            // For grid views, products are in the shop-item container
+            const productContainer = document.querySelector(`#${tabId} .tpproduct__shop-item`);
+            if (!productContainer) return;
+
+            products = Array.from(productContainer.querySelectorAll('.col'));
+        }
+
+        const totalPages = Math.ceil(products.length / itemsPerPage);
+
+        // Create pagination
+        updatePagination(tabId, totalPages);
+
+        // Show initial page
+        showPage(products, currentPage, itemsPerPage);
+
+        // Add event listeners to pagination
+        const paginationContainer = document.querySelector(`#${tabId} .basic-pagination`);
+        if (paginationContainer) {
+            paginationContainer.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (e.target.tagName === 'A' || e.target.tagName === 'I') {
+                    const pageLink = e.target.closest('a');
+                    if (pageLink) {
+                        // Next page button
+                        if (pageLink.querySelector('.icon-chevrons-right') || e.target.classList
+                            .contains('icon-chevrons-right')) {
+                            if (currentPage < totalPages) {
+                                currentPage++;
+                            }
+                        } else {
+                            // Number page button
+                            const pageNum = parseInt(pageLink.textContent);
+                            if (!isNaN(pageNum)) {
+                                currentPage = pageNum;
+                            }
+                        }
+
+                        showPage(products, currentPage, itemsPerPage);
+                        updateActivePage(tabId, currentPage);
+                        updateProductCount(tabId, products.length);
+                    }
+                }
+            });
+        }
+
+        // Update product count on initial load
+        updateProductCount(tabId, products.length);
+    };
+
+    // Function to display products for current page
+    const showPage = function(products, page, itemsPerPage) {
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        products.forEach((product, index) => {
+            if (index >= startIndex && index < endIndex) {
+                product.style.display = '';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    };
+
+    // Function to update pagination links
+    const updatePagination = function(tabId, totalPages) {
+        const paginationContainer = document.querySelector(`#${tabId} .basic-pagination ul`);
+        if (!paginationContainer) return;
+
+        let paginationHTML = '';
+
+        // First page (always active initially)
+        paginationHTML += `<li><span class="current">1</span></li>`;
+
+        // Middle pages
+        for (let i = 2; i <= totalPages; i++) {
+            paginationHTML += `<li><a href="#">${i}</a></li>`;
+        }
+
+        // Next button (if more than one page)
+        if (totalPages > 1) {
+            paginationHTML += `
+        <li>
+            <a href="#">
+                <i class="icon-chevrons-right"></i>
+            </a>
+        </li>
+    `;
+        }
+
+        paginationContainer.innerHTML = paginationHTML;
+    };
+
+    // Function to update active page
+    const updateActivePage = function(tabId, page) {
+        const paginationContainer = document.querySelector(`#${tabId} .basic-pagination ul`);
+        if (!paginationContainer) return;
+
+        const pageItems = paginationContainer.querySelectorAll('li');
+        pageItems.forEach((item, index) => {
+            if (index === page - 1) {
+                item.innerHTML = `<span class="current">${page}</span>`;
+            } else if (index < pageItems.length - 1) {
+                const pageNum = index + 1;
+                item.innerHTML = `<a href="#">${pageNum}</a>`;
+            }
+        });
+    };
+
+    // Update product count in the header
+    const updateProductCount = function(tabId, totalProducts) {
+        const productCountElement = document.querySelector('.product__item-count span');
+        if (productCountElement) {
+            const startItem = (currentPage - 1) * itemsPerPage + 1;
+            const endItem = Math.min(startItem + itemsPerPage - 1, totalProducts);
+
+            productCountElement.textContent =
+                `Showing ${startItem} - ${endItem} of ${totalProducts} Products`;
+        }
+    };
+
+    // Initialize pagination for all tabs
+    initPagination('nav-all');
+    initPagination('nav-popular');
+    initPagination('nav-product');
+
+    // Handle tab switching to maintain pagination
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            const targetId = e.target.getAttribute('data-bs-target').substring(1);
+            currentPage = 1; // Reset to first page when switching tabs
+            setTimeout(() => {
+                initPagination(targetId);
+            }, 100); // Small delay to ensure the tab is fully displayed
+        });
+    });
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     // Add transition styles for smooth filtering

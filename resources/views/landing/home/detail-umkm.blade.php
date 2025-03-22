@@ -66,7 +66,7 @@
                                                     <span class="tpbrandproduct__product-title"><a
                                                             href="/produk/details-product/{{ $item->id_produk }}">
                                                             {{ $item->name }}</a></span>
-                                                    <h5 class="tpcontact-inner-sub-title">{{$item->stok}}
+                                                    <h5 class="tpcontact-inner-sub-title">1
                                                         {{ $item->satuan->nama_satuan }}</h5>
                                                     <div class="tpproduct__price">
                                                         <span>Rp {{ number_format($item->harga, 0, ',', '.') }}</span>

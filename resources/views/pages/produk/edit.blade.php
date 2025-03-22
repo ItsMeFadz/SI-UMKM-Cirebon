@@ -27,16 +27,6 @@
     {{-- Body Container --}}
     <div class="container-fluid general-widget">
         <div class="row">
-            <div id="image-preview-container" class=" d-none">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Preview Produk</h5>
-                    </div>
-                    <div class="card-body text-center">
-                        <img id="preview-image" class="img-fluid" style="max-height: 200px; max-width: 200px;">
-                    </div>
-                </div>
-            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header pb-0">
@@ -49,6 +39,16 @@
                         @method('POST')
                         <div class="card-body">
                             <div class="row">
+                                <div id="image-preview-container" class=" d-none">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Preview Produk</h5>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <img id="preview-image" class="img-fluid" style="max-height: 200px; max-width: 200px;">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="name">Nama Produk<span

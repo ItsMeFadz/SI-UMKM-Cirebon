@@ -49,8 +49,11 @@
                                 @foreach ($produk as $item)
                                     <div class="col-xl-4 col-md-6">
                                         <div class="prooduct-details-box">
-                                            <div class="d-flex"><img class="align-self-center img-fluid img-60"
+                                            <div class="d-flex">
+                                                <a href="/produk/details-product/{{ $item->id_produk }}">
+                                                    <img class="align-self-center img-fluid img-60"
                                                     src="{{ asset('storage/' . $item->gambar) }}" alt="#">
+                                                </a>
                                                 <div class="flex-grow-1 ms-3">
                                                     <div class="product-name mb-1">
                                                         <h6><a href="/produk/details-product/{{ $item->id_produk }}">{{ $item->name }}</a></h6>
@@ -61,7 +64,7 @@
                                                     <div class="price d-flex">
                                                         {{ 'Rp ' . number_format($item->harga, 0, ',', '.') }}
                                                     </div>
-                                                    <a class="btn btn-primary btn-xs" href="#">Live</a>
+                                                    <a class="btn btn-primary btn-xs" href="/produk/details-product/{{ $item->id_produk }}">Live</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -72,7 +75,7 @@
                                     <div class="alert alert-info">
                                         <p class="mb-0">Anda belum memiliki produk. Silakan tambahkan produk baru.</p>
                                     </div>
-                                    <a href="" class="btn btn-primary mt-3">Tambah Produk
+                                    <a href="/produk/create" class="btn btn-primary mt-3">Tambah Produk
                                         Baru</a>
                                 </div>
                             @endif

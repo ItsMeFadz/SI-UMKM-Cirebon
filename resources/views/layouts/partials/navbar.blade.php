@@ -71,7 +71,7 @@
                         </div>
                     @endif
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
+                        <li><a href="/profil-umkm"><i data-feather="user"></i><span>Account </span></a>
                         </li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST" id="logout-form">
