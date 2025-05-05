@@ -38,7 +38,7 @@ class SatuanController extends Controller
     public function store(request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_satuan' => 'required',
+            'nama_satuan' => 'required|unique:satuan,nama_satuan',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -48,7 +48,7 @@ class SatuanController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama Satuan Sudah Digunakan.',
         ]);
 
         try {
@@ -72,7 +72,7 @@ class SatuanController extends Controller
                 return response()->json(['error' => 'Gagal menyimpan data. Silakan coba lagi.'], 500);
             }
 
-            return redirect()->back()->with('error', 'Kode satuan Sudah Digunakan.');
+            return redirect()->back()->with('error', 'Nama satuan Sudah Digunakan.');
         }
 
     }
@@ -85,7 +85,7 @@ class SatuanController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nama_satuan' => 'required',
+            'nama_satuan' => 'required|unique:satuan,nama_satuan',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -95,7 +95,7 @@ class SatuanController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama Satuan Sudah Digunakan.',
         ]);
 
         try {

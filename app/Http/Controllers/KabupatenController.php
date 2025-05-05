@@ -41,7 +41,7 @@ class KabupatenController extends Controller
     public function store(request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_kabupaten' => 'required',
+            'nama_kabupaten' => 'required|unique:kabupaten,nama_kabupaten',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -51,7 +51,7 @@ class KabupatenController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama kabupaten Sudah Digunakan.',
         ]);
 
         try {
@@ -75,7 +75,7 @@ class KabupatenController extends Controller
                 return response()->json(['error' => 'Gagal menyimpan data. Silakan coba lagi.'], 500);
             }
 
-            return redirect()->back()->with('error', 'Kode kabupaten Sudah Digunakan.');
+            return redirect()->back()->with('error', 'Nama kabupaten Sudah Digunakan.');
         }
 
     }
@@ -88,7 +88,7 @@ class KabupatenController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nama_kabupaten' => 'required',
+            'nama_kabupaten' => 'required|unique:kabupaten,nama_kabupaten',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -98,7 +98,7 @@ class KabupatenController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama kabupaten Sudah Digunakan.',
         ]);
 
         try {

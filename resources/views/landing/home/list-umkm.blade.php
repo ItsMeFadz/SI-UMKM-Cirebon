@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <div class="tpsection mb-35 pt-75">
+                        <div class="tpsection mb-35 pt-35">
                             <h4 class="tpsection__sub-title">~ UMKM Cirebon ~</h4>
                             <h4 class="tpsection__title">Daftar UMKM Cirebon</h4>
                         </div>
@@ -28,11 +28,15 @@
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="tpchoose__item text-center mb-30">
                                 <div class="tpchoose__icon mb-20">
-                                    <img src="{{ asset('storage/' . $item->foto_profil_umkm) }}" alt=""
+                                    <a href="/umkm/details-umkm/{{ $item->id_umkm }}">
+                                        <img src="{{ asset('storage/' . $item->foto_profil_umkm) }}" alt=""
                                         style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #ddd;">
+                                    </a>
                                 </div>
                                 <div class="tpchoose__content">
-                                    <h4 class="tpchoose__title">{{ $item->nama_umkm }}</h4>
+                                    <a href="/umkm/details-umkm/{{ $item->id_umkm }}">
+                                        <h4 class="tpchoose__title">{{ $item->nama_umkm }}</h4>
+                                    </a>
                                     {{-- <p>Adjust global theme options and see design changes in real-time.</p> --}}
                                     <a href="/umkm/details-umkm/{{ $item->id_umkm }}"
                                         class="tpchoose__details d-flex align-items-center justify-content-center">Visit<i

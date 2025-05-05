@@ -71,13 +71,14 @@ class ProdukController extends Controller
         $validator = Validator::make($request->all(), [
             'id_kategori' => 'required|exists:kategori,id_kategori',
             'id_satuan' => 'required|exists:satuan,id_satuan',
-            'name' => 'required|string|max:255',
+            'name' => 'required|unique:produk,name',
             'stok' => 'required|integer|min:1',
             'harga' => 'required|numeric|min:0',
             'deskripsi' => 'required|string',
-            'link' => 'nullable|url',
+            'link' => 'nullable|url', // ini harus diatur dalam database supaya null
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
+            'unique' => 'Nama Produk Sudah Digunakan.',
             'required' => 'Kolom :attribute harus diisi.',
             'string' => 'Kolom :attribute harus berupa teks.',
             'integer' => 'Kolom :attribute harus berupa angka.',
@@ -128,7 +129,7 @@ class ProdukController extends Controller
 
         // Validasi input form
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|unique:produk,name',
             'id_kategori' => 'required|integer',
             'id_satuan' => 'required|integer',
             'stok' => 'required|integer|min:0',
@@ -137,6 +138,7 @@ class ProdukController extends Controller
             'deskripsi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
+            'unique' => 'Nama Produk Sudah Digunakan.',
             'required' => 'Kolom :attribute harus diisi.',
             'string' => 'Kolom :attribute harus berupa teks.',
             'integer' => 'Kolom :attribute harus berupa angka.',

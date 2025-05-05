@@ -47,6 +47,19 @@ class PenggunaController extends Controller
             'role' => 'required|in:0,1',
             'password' => 'required|min:8',
             'disetujui' => 'required|in:0,1'
+        ],[
+            'unique' => 'Email Sudah Digunakan Oleh Pengguna Lain.',
+            'required' => 'Kolom :attribute harus diisi.',
+            'string' => 'Kolom :attribute harus berupa teks.',
+            'integer' => 'Kolom :attribute harus berupa angka.',
+            'numeric' => 'Kolom :attribute harus berupa angka.',
+            'url' => 'Kolom :attribute harus berupa URL yang valid.',
+            'image' => 'Kolom :attribute harus berupa gambar.',
+            'mimes' => 'Kolom :attribute harus memiliki format: jpeg, png, jpg, gif.',
+            'max' => [
+                'string' => 'Kolom :attribute tidak boleh lebih dari :max karakter.',
+                'file' => 'Ukuran :attribute maksimal :max KB.',
+            ],
         ]);
 
         // Hash the password

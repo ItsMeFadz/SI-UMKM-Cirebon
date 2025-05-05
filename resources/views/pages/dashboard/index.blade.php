@@ -16,7 +16,6 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Default</li>
                     </ol>
                 </div>
             </div>

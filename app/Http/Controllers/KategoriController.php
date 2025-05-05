@@ -37,7 +37,7 @@ class KategoriController extends Controller
     public function store(request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_kategori' => 'required',
+            'nama_kategori' => 'required|unique:kategori,nama_kategori',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -47,7 +47,7 @@ class KategoriController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama kategori Sudah Digunakan.',
         ]);
 
         try {
@@ -71,7 +71,7 @@ class KategoriController extends Controller
                 return response()->json(['error' => 'Gagal menyimpan data. Silakan coba lagi.'], 500);
             }
 
-            return redirect()->back()->with('error', 'Kode kategori Sudah Digunakan.');
+            return redirect()->back()->with('error', 'Nama kategori Sudah Digunakan.');
         }
 
     }
@@ -84,7 +84,7 @@ class KategoriController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nama_kategori' => 'required',
+            'nama_kategori' => 'required|unique:kategori,nama_kategori',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -94,7 +94,7 @@ class KategoriController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama kategori Sudah Digunakan.',
         ]);
 
         try {

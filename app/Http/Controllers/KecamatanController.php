@@ -41,7 +41,7 @@ class KecamatanController extends Controller
     public function store(request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_kecamatan' => 'required',
+            'nama_kecamatan' => 'required|unique:kecamatan,nama_kecamatan',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -51,7 +51,7 @@ class KecamatanController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama kecamatan Sudah Digunakan.',
         ]);
 
         try {
@@ -75,7 +75,7 @@ class KecamatanController extends Controller
                 return response()->json(['error' => 'Gagal menyimpan data. Silakan coba lagi.'], 500);
             }
 
-            return redirect()->back()->with('error', 'Kode kecamatan Sudah Digunakan.');
+            return redirect()->back()->with('error', 'Nama kecamatan Sudah Digunakan.');
         }
 
     }
@@ -88,7 +88,7 @@ class KecamatanController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nama_kecamatan' => 'required',
+            'nama_kecamatan' => 'required|unique:kecamatan,nama_kecamatan',
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'max' => [
@@ -98,7 +98,7 @@ class KecamatanController extends Controller
             'mimes' => 'Kolom :attribute harus memiliki format: :values.',
             'integer' => 'Kolom :attribute harus berupa angka.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
-            'unique' => 'Nama budaya sudah ada. Harap pilih nama budaya yang lain.',
+            'unique' => 'Nama kecamatan Sudah Digunakan.',
         ]);
 
         try {

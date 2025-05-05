@@ -46,7 +46,7 @@ class ProfilumkmController extends Controller
     public function visit_umkm($id)
     {
         // Ambil ID pengguna yang sedang login
-        
+
         // Ambil data UMKM berdasarkan user yang login
         // $umkm = \DB::table('kelola_umkm')->where('id_pengguna', $userId)->first();
 
@@ -123,7 +123,7 @@ class ProfilumkmController extends Controller
     public function update_umkm(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama_umkm' => 'required|string|max:255',
+            'nama_umkm' => 'required|unique:kelola_umkm,nama_umkm',
             'foto_profil_umkm' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'link_wa' => 'nullable|string',
             'link_marketplace' => 'nullable|string',
@@ -132,6 +132,19 @@ class ProfilumkmController extends Controller
             'id_kabupaten' => 'required|exists:kabupaten,id_kabupaten',
             'id_kecamatan' => 'required|exists:kecamatan,id_kecamatan',
             'alamat' => 'nullable|string',
+        ], [
+            'unique' => 'Nama Umkm Sudah Digunakan.',
+            'required' => 'Kolom :attribute harus diisi.',
+            'string' => 'Kolom :attribute harus berupa teks.',
+            'integer' => 'Kolom :attribute harus berupa angka.',
+            'numeric' => 'Kolom :attribute harus berupa angka.',
+            'url' => 'Kolom :attribute harus berupa URL yang valid.',
+            'image' => 'Kolom :attribute harus berupa gambar.',
+            'mimes' => 'Kolom :attribute harus memiliki format: jpeg, png, jpg, gif.',
+            'max' => [
+                'string' => 'Kolom :attribute tidak boleh lebih dari :max karakter.',
+                'file' => 'Ukuran :attribute maksimal :max KB.',
+            ],
         ]);
 
         if ($validator->fails()) {
